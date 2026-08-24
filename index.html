@@ -1,3736 +1,4748 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>세라프 아카데미 | SERAPH ACADEMY</title>
-
-  <meta
-    name="description"
-    content="천계를 수호할 차세대 천사를 육성하는 세라프 아카데미 공식 아카이브"
-  >
-
-  <style>
-    /* =========================================================
-       ROOT
-       ========================================================= */
-
-    :root {
-      --bg: #050b16;
-      --bg2: #081222;
-
-      --panel: rgba(13, 26, 47, 0.82);
-      --panel-light: rgba(24, 40, 65, 0.68);
-
-      --ivory: #f4efde;
-      --gold: #d8b866;
-      --gold-light: #f0d998;
-
-      --text: #edf2fb;
-      --sub: #9aa9bd;
-
-      --danger: #bd6876;
-
-      --line: rgba(222, 198, 126, 0.18);
-
-      --radius: 22px;
-      --max: 1240px;
-    }
-
-
-    /* =========================================================
-       RESET
-       ========================================================= */
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-
-      color: var(--text);
-
-      background:
-        radial-gradient(
-          circle at 15% 15%,
-          rgba(82, 112, 164, 0.18),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 85% 10%,
-          rgba(216, 184, 102, 0.10),
-          transparent 25%
-        ),
-        linear-gradient(
-          180deg,
-          #040912 0%,
-          #081321 48%,
-          #030711 100%
-        );
-
-      font-family:
-        Pretendard,
-        "Noto Sans KR",
-        Arial,
-        sans-serif;
-
-      line-height: 1.7;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -10;
-
-      pointer-events: none;
-
-      background-image:
-        radial-gradient(
-          circle,
-          rgba(255,255,255,.6) 0 1px,
-          transparent 1.3px
-        );
-
-      background-size: 92px 92px;
-
-      opacity: .18;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>세라프 아카데미 | SERAPH ACADEMY</title>
+
+<meta
+  name="description"
+  content="천계의 차세대 천사를 육성하는 세라프 아카데미 공식 아카이브."
+>
+
+<style>
+/* ==========================================================
+   SERAPH ACADEMY
+   ========================================================== */
+
+:root {
+  --bg: #050a14;
+  --bg2: #081321;
+  --panel: rgba(12, 24, 43, 0.88);
+  --panel2: rgba(20, 35, 57, 0.78);
+
+  --ivory: #f4efdf;
+  --gold: #d8b867;
+  --gold-light: #f1da98;
+
+  --text: #edf3fc;
+  --sub: #9ba9bd;
+  --muted: #69798f;
+
+  --danger: #c36c7b;
+
+  --line: rgba(221, 195, 122, 0.17);
+
+  --radius: 22px;
+  --max: 1240px;
+}
+
+
+/* ==========================================================
+   RESET
+   ========================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  color: var(--text);
+
+  background:
+    radial-gradient(
+      circle at 15% 12%,
+      rgba(65, 97, 150, .20),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 8%,
+      rgba(216, 184, 103, .11),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 50% 70%,
+      rgba(74, 72, 135, .1),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      #040912,
+      #081321 50%,
+      #030710
+    );
+
+  font-family:
+    Pretendard,
+    "Noto Sans KR",
+    "Apple SD Gothic Neo",
+    Arial,
+    sans-serif;
+
+  line-height: 1.7;
+}
+
+body.profile-open {
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -5;
+
+  pointer-events: none;
+
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.55) 0 1px,
+      transparent 1.3px
+    );
+
+  background-size: 95px 95px;
+  opacity: .17;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
 
-    button,
-    input {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    img {
-      display: block;
-    }
-
-
-    /* =========================================================
-       COMMON
-       ========================================================= */
-
-    .container {
-      width: min(calc(100% - 40px), var(--max));
-      margin: 0 auto;
-    }
+/* ==========================================================
+   COMMON
+   ========================================================== */
+
+.container {
+  width: min(calc(100% - 40px), var(--max));
+  margin: 0 auto;
+}
+
+.section {
+  padding: 105px 0;
+  scroll-margin-top: 80px;
+}
 
-    .section {
-      padding: 105px 0;
-      scroll-margin-top: 80px;
-    }
+.divider {
+  width: min(calc(100% - 40px), var(--max));
+  height: 1px;
+  margin: 0 auto;
 
-    .divider {
-      width: min(calc(100% - 40px), var(--max));
-      height: 1px;
-      margin: 0 auto;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(216,184,102,.35),
-          transparent
-        );
-    }
-
-    .eyebrow {
-      margin-bottom: 10px;
-
-      color: var(--gold);
-      font-size: .72rem;
-      font-weight: 800;
-      letter-spacing: .2em;
-
-      text-transform: uppercase;
-    }
-
-    .section-title {
-      color: var(--ivory);
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(216,184,103,.38),
+      transparent
+    );
+}
 
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.2rem, 5vw, 3.6rem);
-      line-height: 1.1;
+.eyebrow {
+  margin-bottom: 10px;
+
+  color: var(--gold);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .20em;
+}
+
+.section-title {
+  color: var(--ivory);
 
-      letter-spacing: -.04em;
-    }
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(2.2rem, 5vw, 3.6rem);
 
-    .section-description {
-      max-width: 760px;
-      margin-top: 18px;
+  line-height: 1.1;
+  letter-spacing: -.04em;
+}
 
-      color: var(--sub);
-      font-size: .94rem;
-    }
+.section-description {
+  max-width: 760px;
+  margin-top: 18px;
 
-    .section-title-wrap {
-      margin-bottom: 46px;
-    }
+  color: var(--sub);
+  font-size: .94rem;
+}
 
+.section-title-wrap {
+  margin-bottom: 46px;
+}
 
-    /* =========================================================
-       NAV
-       ========================================================= */
 
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
+/* ==========================================================
+   HEADER
+   ========================================================== */
 
-      border-bottom:
-        1px solid rgba(255,255,255,.05);
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 
-      background:
-        rgba(4, 9, 18, .83);
+  z-index: 1000;
 
-      backdrop-filter: blur(18px);
-    }
+  border-bottom:
+    1px solid rgba(255,255,255,.05);
 
-    .nav {
-      width: min(calc(100% - 40px), var(--max));
-      height: 72px;
-      margin: 0 auto;
+  background:
+    rgba(4,9,18,.83);
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
+  backdrop-filter: blur(18px);
+}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+.nav {
+  width: min(calc(100% - 40px), var(--max));
+  height: 72px;
+  margin: 0 auto;
 
-    .brand-symbol {
-      width: 38px;
-      height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-      display: grid;
-      place-items: center;
+  gap: 25px;
+}
 
-      color: #111722;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-      border-radius: 50%;
+.brand-symbol {
+  width: 38px;
+  height: 38px;
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--gold-light),
-          var(--gold)
-        );
-    }
+  display: grid;
+  place-items: center;
 
-    .brand-name {
-      color: var(--ivory);
+  border-radius: 50%;
 
-      font-family: Georgia, serif;
-      font-size: .9rem;
-      letter-spacing: .12em;
-    }
+  color: #151820;
 
-    .nav-links {
-      list-style: none;
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold-light),
+      var(--gold)
+    );
+}
 
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
+.brand-name {
+  color: var(--ivory);
 
-    .nav-links a {
-      color: #aab7c8;
-      font-size: .82rem;
+  font-family: Georgia, serif;
+  font-size: .9rem;
+  letter-spacing: .13em;
+}
 
-      transition: .2s;
-    }
+.nav-links {
+  display: flex;
+  gap: 24px;
 
-    .nav-links a:hover {
-      color: var(--gold-light);
-    }
+  list-style: none;
+}
 
-    .menu-toggle {
-      display: none;
+.nav-links a {
+  color: #aab7c8;
+  font-size: .82rem;
 
-      width: 42px;
-      height: 42px;
+  transition: color .2s ease;
+}
 
-      color: white;
+.nav-links a:hover {
+  color: var(--gold-light);
+}
 
-      border:
-        1px solid rgba(255,255,255,.1);
+.menu-toggle {
+  display: none;
 
-      border-radius: 10px;
+  width: 42px;
+  height: 42px;
 
-      background:
-        rgba(255,255,255,.04);
-    }
+  color: white;
 
+  border:
+    1px solid rgba(255,255,255,.1);
 
-    /* =========================================================
-       HERO
-       ========================================================= */
+  border-radius: 10px;
 
-    .hero {
-      min-height: 100vh;
-      padding: 140px 0 90px;
+  background:
+    rgba(255,255,255,.04);
+}
 
-      display: flex;
-      align-items: center;
-    }
 
-    .hero-grid {
-      width: 100%;
+/* ==========================================================
+   HERO
+   ========================================================== */
 
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 65px;
+.hero {
+  min-height: 100vh;
+  padding: 140px 0 90px;
 
-      align-items: center;
-    }
+  display: flex;
+  align-items: center;
+}
 
-    .hero-kicker {
-      margin-bottom: 16px;
+.hero-grid {
+  width: 100%;
 
-      color: var(--gold);
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 65px;
 
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .25em;
-    }
+  align-items: center;
+}
 
-    .hero h1 {
-      color: var(--ivory);
+.hero-kicker {
+  margin-bottom: 16px;
 
-      font-family: Georgia, serif;
+  color: var(--gold);
 
-      font-size:
-        clamp(4rem, 10vw, 8rem);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .25em;
+}
 
-      font-weight: 400;
-      line-height: .85;
+.hero h1 {
+  color: var(--ivory);
 
-      letter-spacing: -.06em;
-    }
+  font-family: Georgia, serif;
 
-    .hero h1 span {
-      display: block;
+  font-size:
+    clamp(4rem, 10vw, 8rem);
 
-      margin-top: 18px;
+  font-weight: 400;
 
-      color: transparent;
+  line-height: .85;
+  letter-spacing: -.06em;
+}
 
-      -webkit-text-stroke:
-        1px rgba(240,217,152,.9);
+.hero h1 span {
+  display: block;
 
-      font-size: .45em;
+  margin-top: 18px;
 
-      letter-spacing: .14em;
-    }
+  color: transparent;
 
-    .hero-subtitle {
-      max-width: 650px;
-      margin-top: 30px;
+  -webkit-text-stroke:
+    1px rgba(241,218,152,.9);
 
-      color: #aab6c7;
-      font-size: 1rem;
-    }
+  font-size: .45em;
+  letter-spacing: .14em;
+}
 
-    .hero-actions {
-      margin-top: 34px;
+.hero-subtitle {
+  max-width: 650px;
+  margin-top: 30px;
 
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+  color: #aab6c7;
+}
 
-    .button {
-      min-height: 48px;
-      padding: 0 22px;
+.hero-actions {
+  margin-top: 34px;
 
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
-      border-radius: 999px;
+.button {
+  min-height: 48px;
+  padding: 0 22px;
 
-      font-size: .84rem;
-      font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-      transition: .2s;
-    }
+  border-radius: 999px;
 
-    .button:hover {
-      transform: translateY(-2px);
-    }
+  font-size: .84rem;
+  font-weight: 800;
 
-    .button-primary {
-      color: #111722;
+  transition:
+    transform .2s ease;
+}
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--gold-light),
-          var(--gold)
-        );
-    }
+.button:hover {
+  transform: translateY(-2px);
+}
 
-    .button-secondary {
-      color: #dfe7f3;
+.button-primary {
+  color: #111722;
 
-      border:
-        1px solid rgba(255,255,255,.12);
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold-light),
+      var(--gold)
+    );
+}
 
-      background:
-        rgba(255,255,255,.035);
-    }
+.button-secondary {
+  color: #dfe7f3;
 
-    .hero-card {
-      min-height: 500px;
-      padding: 35px;
+  border:
+    1px solid rgba(255,255,255,.12);
 
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+  background:
+    rgba(255,255,255,.035);
+}
 
-      border:
-        1px solid var(--line);
+.hero-card {
+  min-height: 500px;
+  padding: 35px;
 
-      border-radius: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
-      background:
-        radial-gradient(
-          circle at 50% 25%,
-          rgba(216,184,102,.16),
-          transparent 30%
-        ),
-        linear-gradient(
-          145deg,
-          rgba(25,43,69,.95),
-          rgba(5,12,24,.96)
-        );
+  border:
+    1px solid var(--line);
 
-      box-shadow:
-        0 30px 80px rgba(0,0,0,.35);
-    }
+  border-radius: 38px;
 
-    .hero-symbol {
-      flex: 1;
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(216,184,103,.18),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(25,43,69,.95),
+      rgba(5,12,24,.96)
+    );
 
-      display: grid;
-      place-items: center;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.35);
+}
 
-      color: var(--gold-light);
+.hero-symbol {
+  flex: 1;
 
-      font-family: Georgia, serif;
-      font-size: 7rem;
+  display: grid;
+  place-items: center;
 
-      text-shadow:
-        0 0 40px rgba(216,184,102,.3);
-    }
+  color: var(--gold-light);
 
-    .hero-card-label {
-      color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: 7rem;
+}
 
-      font-size: .68rem;
-      font-weight: 800;
+.hero-card-label {
+  color: var(--gold);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
 
-      letter-spacing: .16em;
-    }
+.hero-card h2 {
+  margin-top: 8px;
 
-    .hero-card h2 {
-      margin-top: 8px;
+  color: var(--ivory);
 
-      color: var(--ivory);
+  font-family: Georgia, serif;
+  font-size: 1.6rem;
+}
 
-      font-family: Georgia, serif;
-      font-size: 1.6rem;
-    }
+.hero-card p {
+  margin-top: 10px;
 
-    .hero-card p {
-      margin-top: 10px;
+  color: var(--sub);
+  font-size: .84rem;
+}
 
-      color: var(--sub);
-      font-size: .84rem;
-    }
 
+/* ==========================================================
+   ACADEMY
+   ========================================================== */
 
-    /* =========================================================
-       INTRO
-       ========================================================= */
+.intro-grid {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 35px;
+}
 
-    .intro-grid {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 35px;
-    }
+.info-panel {
+  padding: 34px;
 
-    .info-panel {
-      padding: 34px;
+  border:
+    1px solid var(--line);
 
-      border:
-        1px solid var(--line);
+  border-radius: var(--radius);
 
-      border-radius: var(--radius);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(22,38,62,.82),
+      rgba(7,15,29,.78)
+    );
+}
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(22,38,62,.82),
-          rgba(7,15,29,.78)
-        );
-    }
+.quote {
+  color: var(--ivory);
 
-    .quote {
-      color: var(--ivory);
+  font-family: Georgia, serif;
 
-      font-family: Georgia, serif;
-      font-size: clamp(1.5rem, 3vw, 2.3rem);
-      line-height: 1.45;
-    }
+  font-size:
+    clamp(1.5rem, 3vw, 2.3rem);
 
-    .quote small {
-      display: block;
+  line-height: 1.45;
+}
 
-      margin-top: 22px;
+.quote small {
+  display: block;
 
-      color: var(--gold);
+  margin-top: 22px;
 
-      font-family:
-        Pretendard,
-        sans-serif;
+  color: var(--gold);
 
-      font-size: .68rem;
-      letter-spacing: .12em;
-    }
+  font-family: inherit;
+  font-size: .68rem;
+  letter-spacing: .12em;
+}
 
-    .academy-facts {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
+.academy-facts {
+  display: grid;
+  grid-template-columns:
+    repeat(2, 1fr);
 
-    .fact {
-      padding: 22px;
+  gap: 12px;
+}
 
-      border:
-        1px solid rgba(255,255,255,.06);
+.fact {
+  padding: 22px;
 
-      border-radius: 14px;
+  border:
+    1px solid rgba(255,255,255,.06);
 
-      background:
-        rgba(255,255,255,.025);
-    }
+  border-radius: 14px;
 
-    .fact-label {
-      color: var(--gold);
+  background:
+    rgba(255,255,255,.025);
+}
 
-      font-size: .66rem;
-      font-weight: 800;
+.fact-label {
+  color: var(--gold);
 
-      letter-spacing: .12em;
-    }
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
 
-    .fact-value {
-      margin-top: 6px;
+.fact-value {
+  margin-top: 6px;
 
-      color: #e4ebf6;
+  color: #e4ebf6;
+  font-size: .9rem;
+}
 
-      font-size: .9rem;
-    }
 
+/* ==========================================================
+   ANGEL ORDERS
+   ========================================================== */
 
-    /* =========================================================
-       ORDERS
-       ========================================================= */
+.orders {
+  margin-top: 40px;
 
-    .orders {
-      margin-top: 40px;
+  display: grid;
+  grid-template-columns:
+    repeat(3, 1fr);
 
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
+  gap: 12px;
+}
 
-    .order {
-      min-height: 155px;
-      padding: 22px;
+.order {
+  position: relative;
 
-      position: relative;
-      overflow: hidden;
+  min-height: 165px;
+  padding: 22px;
 
-      border:
-        1px solid rgba(255,255,255,.06);
+  overflow: hidden;
 
-      border-radius: 15px;
+  border:
+    1px solid rgba(255,255,255,.06);
 
-      background:
-        rgba(255,255,255,.025);
-    }
+  border-radius: 15px;
 
-    .order-number {
-      position: absolute;
-      top: -7px;
-      right: 12px;
+  background:
+    rgba(255,255,255,.025);
+}
 
-      color: rgba(255,255,255,.035);
+.order-number {
+  position: absolute;
+  top: -8px;
+  right: 12px;
 
-      font-family: Georgia, serif;
-      font-size: 5rem;
-    }
+  color:
+    rgba(255,255,255,.035);
 
-    .order strong {
-      position: relative;
+  font-family: Georgia, serif;
+  font-size: 5rem;
+}
 
-      color: var(--gold-light);
+.order strong {
+  position: relative;
 
-      font-family: Georgia, serif;
-      font-size: 1.1rem;
-    }
+  color: var(--gold-light);
 
-    .order span {
-      display: block;
+  font-family: Georgia, serif;
+  font-size: 1.13rem;
+}
 
-      position: relative;
+.order span {
+  position: relative;
 
-      color: #73829a;
+  display: block;
 
-      font-size: .65rem;
-      letter-spacing: .1em;
-    }
+  color: #73829a;
+  font-size: .65rem;
 
-    .order p {
-      margin-top: 10px;
+  letter-spacing: .1em;
+}
 
-      position: relative;
+.order p {
+  position: relative;
 
-      color: #9daabe;
+  margin-top: 10px;
 
-      font-size: .77rem;
-    }
+  color: #9daabe;
+  font-size: .77rem;
+}
 
 
-    /* =========================================================
-       CHARACTER GRID
-       ========================================================= */
+/* ==========================================================
+   CHARACTER CARDS
+   ========================================================== */
 
-    .character-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
+.character-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, 1fr);
 
-    .character-card {
-      min-height: 490px;
+  gap: 20px;
+}
 
-      position: relative;
-      overflow: hidden;
+.character-card {
+  position: relative;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+  min-height: 500px;
 
-      border:
-        1px solid rgba(255,255,255,.075);
+  overflow: hidden;
 
-      border-radius: 23px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
-      background:
-        linear-gradient(
-          145deg,
-          #16243b,
-          #07101e
-        );
+  cursor: pointer;
 
-      box-shadow:
-        0 20px 50px rgba(0,0,0,.25);
+  border:
+    1px solid rgba(255,255,255,.075);
 
-      transition:
-        transform .25s ease,
-        border-color .25s ease;
-    }
+  border-radius: 23px;
 
-    .character-card:hover {
-      transform: translateY(-6px);
+  background:
+    linear-gradient(
+      145deg,
+      #16243b,
+      #07101e
+    );
 
-      border-color:
-        rgba(216,184,102,.38);
-    }
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.25);
 
-    /*
-       이미지가 없을 때 뒤에 보일 기본 배경
-    */
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
 
-    .character-placeholder {
-      position: absolute;
-      inset: 0;
+.character-card:hover {
+  transform:
+    translateY(-7px);
 
-      display: grid;
-      place-items: center;
+  border-color:
+    rgba(216,184,103,.45);
 
-      background:
-        radial-gradient(
-          circle at 50% 25%,
-          rgba(216,184,102,.14),
-          transparent 28%
-        ),
-        linear-gradient(
-          145deg,
-          #17263e,
-          #07101e
-        );
-    }
+  box-shadow:
+    0 28px 65px rgba(0,0,0,.38);
+}
 
-    .placeholder-symbol {
-      color:
-        rgba(240,217,152,.46);
+.character-card:focus-visible {
+  outline:
+    2px solid var(--gold);
+}
 
-      font-family: Georgia, serif;
-      font-size: 5.5rem;
-    }
+.character-placeholder {
+  position: absolute;
+  inset: 0;
 
-    /*
-       모든 캐릭터 이미지 공통
-    */
+  display: grid;
+  place-items: center;
 
-    .character-image {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(216,184,103,.14),
+      transparent 28%
+    ),
+    linear-gradient(
+      145deg,
+      #17263e,
+      #07101e
+    );
+}
 
-      width: 100%;
-      height: 100%;
+.placeholder-symbol {
+  color:
+    rgba(240,217,152,.46);
 
-      object-fit: cover;
+  font-family: Georgia, serif;
+  font-size: 5.5rem;
+}
 
-      /*
-        얼굴 위주의 반신샷이면
-        object-position 값을 캐릭터마다 조절 가능
-      */
+.character-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 
-      object-position:
-        center top;
+  width: 100%;
+  height: 100%;
 
-      transition:
-        transform .45s ease;
-    }
+  object-fit: cover;
+  object-position: center top;
 
-    .character-card:hover
-    .character-image {
-      transform: scale(1.035);
-    }
+  transition:
+    transform .5s ease;
+}
 
-    .character-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
+.character-card:hover
+.character-image {
+  transform:
+    scale(1.04);
+}
 
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(3,8,16,.02) 20%,
-          rgba(3,8,16,.16) 48%,
-          rgba(3,8,16,.96) 83%,
-          rgba(3,8,16,1) 100%
-        );
-    }
+.character-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
 
-    .character-content {
-      position: relative;
-      z-index: 3;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(3,8,16,0) 17%,
+      rgba(3,8,16,.08) 38%,
+      rgba(3,8,16,.68) 68%,
+      rgba(3,8,16,.98) 90%
+    );
+}
 
-      padding: 26px;
-    }
+.character-content {
+  position: relative;
+  z-index: 3;
 
-    .character-meta {
-      margin-bottom: 12px;
+  padding: 26px;
+}
 
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
+.character-meta {
+  margin-bottom: 12px;
 
-    .tag {
-      padding: 5px 9px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
 
-      color: #c2cddd;
+.tag {
+  padding: 5px 9px;
 
-      border:
-        1px solid rgba(255,255,255,.11);
+  color: #c2cddd;
 
-      border-radius: 999px;
+  border:
+    1px solid rgba(255,255,255,.11);
 
-      background:
-        rgba(4,9,18,.55);
+  border-radius: 999px;
 
-      font-size: .62rem;
-      font-weight: 700;
-    }
+  background:
+    rgba(4,9,18,.55);
 
-    .tag-gold {
-      color: var(--gold-light);
+  font-size: .62rem;
+  font-weight: 700;
+}
 
-      border-color:
-        rgba(216,184,102,.28);
+.tag-gold {
+  color: var(--gold-light);
 
-      background:
-        rgba(216,184,102,.1);
-    }
+  border-color:
+    rgba(216,184,103,.28);
 
-    .tag-danger {
-      color: #efabb6;
+  background:
+    rgba(216,184,103,.10);
+}
 
-      border-color:
-        rgba(189,104,118,.35);
+.tag-danger {
+  color: #efabb6;
 
-      background:
-        rgba(189,104,118,.1);
-    }
+  border-color:
+    rgba(195,108,123,.35);
 
-    .character-name {
-      color: var(--ivory);
+  background:
+    rgba(195,108,123,.1);
+}
 
-      font-family: Georgia, serif;
-      font-size: 1.65rem;
+.character-name {
+  color: var(--ivory);
 
-      line-height: 1.05;
-    }
+  font-family: Georgia, serif;
+  font-size: 1.7rem;
 
-    .character-name-en {
-      margin-top: 5px;
+  line-height: 1.05;
+}
 
-      color: var(--gold);
+.character-name-en {
+  margin-top: 5px;
 
-      font-size: .64rem;
-      letter-spacing: .14em;
-    }
+  color: var(--gold);
 
-    .character-description {
-      margin-top: 12px;
+  font-size: .64rem;
+  letter-spacing: .14em;
+}
 
-      color: #a9b5c6;
-      font-size: .79rem;
-    }
+.character-description {
+  margin-top: 12px;
 
+  color: #a9b5c6;
+  font-size: .79rem;
+}
 
-    /* =========================================================
-       STUDENT TABS
-       ========================================================= */
+.character-open {
+  margin-top: 17px;
 
-    .tabs {
-      margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+  color: var(--gold-light);
 
-    .tab-button {
-      min-height: 43px;
-      padding: 0 18px;
+  font-size: .67rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
 
-      color: #9daabd;
+.character-open::after {
+  content: "→";
+}
 
-      border:
-        1px solid rgba(255,255,255,.09);
 
-      border-radius: 999px;
+/* ==========================================================
+   STUDENT FILTER
+   ========================================================== */
 
-      background:
-        rgba(255,255,255,.025);
-    }
+.tabs {
+  margin-bottom: 30px;
 
-    .tab-button.active,
-    .tab-button:hover {
-      color: #121820;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
-      border-color: var(--gold);
+.tab-button {
+  min-height: 43px;
+  padding: 0 18px;
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--gold-light),
-          var(--gold)
-        );
-    }
+  color: #9daabd;
 
-    .student-card {
-      display: none;
-    }
+  border:
+    1px solid rgba(255,255,255,.09);
 
-    .student-card.show {
-      display: flex;
-    }
+  border-radius: 999px;
 
+  background:
+    rgba(255,255,255,.025);
+}
 
-    /* =========================================================
-       DEPARTMENTS
-       ========================================================= */
+.tab-button:hover,
+.tab-button.active {
+  color: #121820;
 
-    .department-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
+  border-color: var(--gold);
 
-    .department-card {
-      padding: 28px;
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold-light),
+      var(--gold)
+    );
+}
 
-      border:
-        1px solid rgba(255,255,255,.065);
+.student-card {
+  display: none;
+}
 
-      border-radius: 17px;
+.student-card.show {
+  display: flex;
+}
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(20,35,58,.7),
-          rgba(7,15,29,.72)
-        );
-    }
 
-    .department-card h3 {
-      color: var(--ivory);
+/* ==========================================================
+   DEPARTMENTS
+   ========================================================== */
 
-      font-family: Georgia, serif;
-      font-size: 1.35rem;
-    }
+.department-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, 1fr);
 
-    .department-en {
-      margin-top: 2px;
+  gap: 18px;
+}
 
-      color: #75849b;
+.department-card {
+  padding: 28px;
 
-      font-size: .66rem;
-      letter-spacing: .1em;
-    }
+  border:
+    1px solid rgba(255,255,255,.065);
 
-    .department-description {
-      margin-top: 14px;
+  border-radius: 17px;
 
-      color: #9facc0;
-      font-size: .8rem;
-    }
+  background:
+    linear-gradient(
+      145deg,
+      rgba(20,35,58,.7),
+      rgba(7,15,29,.72)
+    );
+}
 
-    .course-list {
-      margin-top: 17px;
+.department-card h3 {
+  color: var(--ivory);
 
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
+  font-family: Georgia, serif;
+  font-size: 1.35rem;
+}
 
-    .course {
-      padding: 6px 9px;
+.department-en {
+  margin-top: 2px;
 
-      color: #c2ccda;
+  color: #75849b;
+  font-size: .66rem;
 
-      border:
-        1px solid rgba(255,255,255,.07);
+  letter-spacing: .10em;
+}
 
-      border-radius: 7px;
+.department-description {
+  margin-top: 14px;
 
-      background:
-        rgba(255,255,255,.025);
+  color: #9facc0;
+  font-size: .8rem;
+}
 
-      font-size: .64rem;
-    }
+.course-list {
+  margin-top: 17px;
 
-    .department-secret {
-      border-color:
-        rgba(189,104,118,.22);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(56,20,31,.4),
-          rgba(10,7,16,.76)
-        );
-    }
+.course {
+  padding: 6px 9px;
 
+  color: #c2ccda;
 
-    /* =========================================================
-       EVENTS
-       ========================================================= */
+  border:
+    1px solid rgba(255,255,255,.07);
 
-    .timeline {
-      display: grid;
-      gap: 22px;
-    }
+  border-radius: 7px;
 
-    .event-card {
-      padding: 30px;
+  background:
+    rgba(255,255,255,.025);
 
-      border:
-        1px solid rgba(255,255,255,.065);
+  font-size: .64rem;
+}
 
-      border-radius: 19px;
+.department-secret {
+  border-color:
+    rgba(195,108,123,.22);
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(18,32,52,.72),
-          rgba(6,14,27,.76)
-        );
-    }
+  background:
+    linear-gradient(
+      145deg,
+      rgba(56,20,31,.4),
+      rgba(10,7,16,.76)
+    );
+}
 
-    .event-season {
-      color: var(--gold);
 
-      font-size: .67rem;
-      font-weight: 800;
-      letter-spacing: .15em;
-    }
+/* ==========================================================
+   EVENTS
+   ========================================================== */
 
-    .event-title {
-      margin-top: 7px;
+.timeline {
+  display: grid;
+  gap: 22px;
+}
 
-      color: var(--ivory);
+.event-card {
+  padding: 30px;
 
-      font-family: Georgia, serif;
-      font-size: 1.5rem;
-    }
+  border:
+    1px solid rgba(255,255,255,.065);
 
-    .event-copy {
-      margin-top: 10px;
+  border-radius: 19px;
 
-      color: #9facc0;
-      font-size: .82rem;
-    }
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,32,52,.72),
+      rgba(6,14,27,.76)
+    );
+}
 
-    .event-sub {
-      margin-top: 18px;
+.event-season {
+  color: var(--gold);
 
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
+  font-size: .67rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
 
-    .event-mini {
-      padding: 15px;
+.event-title {
+  margin-top: 7px;
 
-      border:
-        1px solid rgba(255,255,255,.06);
+  color: var(--ivory);
 
-      border-radius: 11px;
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+}
 
-      background:
-        rgba(255,255,255,.022);
-    }
+.event-copy {
+  margin-top: 10px;
 
-    .event-mini strong {
-      color: #dde6f2;
+  color: #9facc0;
+  font-size: .82rem;
+}
 
-      font-size: .76rem;
-    }
+.event-sub {
+  margin-top: 18px;
 
-    .event-mini span {
-      display: block;
+  display: grid;
+  grid-template-columns:
+    repeat(3, 1fr);
 
-      margin-top: 4px;
+  gap: 10px;
+}
 
-      color: #79879b;
+.event-mini {
+  padding: 15px;
 
-      font-size: .65rem;
-      line-height: 1.5;
-    }
+  border:
+    1px solid rgba(255,255,255,.06);
 
+  border-radius: 11px;
 
-    /* =========================================================
-       MUSIC
-       ========================================================= */
+  background:
+    rgba(255,255,255,.022);
+}
 
-    .music-player {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 1200;
+.event-mini strong {
+  color: #dde6f2;
+  font-size: .76rem;
+}
 
-      width: min(
-        330px,
-        calc(100vw - 30px)
-      );
+.event-mini span {
+  display: block;
 
-      border:
-        1px solid rgba(216,184,102,.2);
+  margin-top: 4px;
 
-      border-radius: 17px;
+  color: #79879b;
+  font-size: .65rem;
+}
 
-      background:
-        rgba(5,12,24,.92);
 
-      backdrop-filter:
-        blur(18px);
+/* ==========================================================
+   FULL SCREEN PROFILE
+   ========================================================== */
 
-      box-shadow:
-        0 20px 60px rgba(0,0,0,.42);
+.profile-page {
+  position: fixed;
+  inset: 0;
 
-      overflow: hidden;
-    }
+  z-index: 5000;
 
-    .music-header {
-      padding: 14px 16px;
+  display: none;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+  overflow-y: auto;
 
-      border-bottom:
-        1px solid rgba(255,255,255,.05);
-    }
+  background:
+    rgba(2,6,13,.97);
 
-    .music-title {
-      color: var(--ivory);
+  backdrop-filter:
+    blur(18px);
+}
 
-      font-size: .73rem;
-      font-weight: 800;
-    }
+.profile-page.open {
+  display: block;
+}
 
-    .music-track {
-      color: #75849b;
+.profile-backdrop {
+  position: fixed;
+  inset: 0;
 
-      font-size: .61rem;
-    }
+  z-index: -1;
 
-    .music-collapse {
-      width: 30px;
-      height: 30px;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(72,102,157,.17),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 25%,
+      rgba(216,184,103,.10),
+      transparent 30%
+    );
+}
 
-      color: #cad3e0;
+.profile-topbar {
+  position: sticky;
+  top: 0;
 
-      border: 0;
-      border-radius: 50%;
+  z-index: 5;
 
-      background:
-        rgba(255,255,255,.05);
-    }
+  min-height: 70px;
+  padding: 0 25px;
 
-    .music-body {
-      padding: 15px 16px;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    .music-player.collapsed
-    .music-body {
-      display: none;
-    }
+  border-bottom:
+    1px solid rgba(255,255,255,.06);
 
-    .music-controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+  background:
+    rgba(3,8,16,.86);
 
-    .music-button {
-      height: 38px;
-      padding: 0 15px;
+  backdrop-filter:
+    blur(18px);
+}
 
-      color: #121820;
+.profile-top-title {
+  color: var(--gold-light);
 
-      border: 0;
-      border-radius: 999px;
+  font-family: Georgia, serif;
+  font-size: .82rem;
+  letter-spacing: .15em;
+}
 
-      background: var(--gold);
+.profile-close {
+  width: 43px;
+  height: 43px;
 
-      font-size: .7rem;
-      font-weight: 900;
-    }
+  color: #e7edf6;
 
-    .volume {
-      width: 100%;
+  border:
+    1px solid rgba(255,255,255,.10);
 
-      accent-color: var(--gold);
-    }
+  border-radius: 50%;
 
-    .music-file-label {
-      display: block;
+  background:
+    rgba(255,255,255,.04);
 
-      margin-top: 12px;
+  font-size: 1.2rem;
 
-      color: #7f8da2;
+  transition:
+    background .2s ease,
+    transform .2s ease;
+}
 
-      font-size: .64rem;
-    }
+.profile-close:hover {
+  transform: rotate(4deg);
 
-    .music-file-label input {
-      width: 100%;
+  background:
+    rgba(255,255,255,.09);
+}
 
-      margin-top: 7px;
+.profile-container {
+  width:
+    min(calc(100% - 50px), 1380px);
 
-      color: #a8b4c5;
+  margin: 0 auto;
 
-      font-size: .63rem;
-    }
+  padding: 55px 0 90px;
+}
 
-    .music-notice {
-      margin-top: 8px;
+.profile-hero {
+  display: grid;
+  grid-template-columns:
+    minmax(330px, .8fr)
+    minmax(0, 1.2fr);
 
-      color: #647289;
+  gap: 58px;
+  align-items: start;
+}
 
-      font-size: .59rem;
-    }
+.profile-image-wrap {
+  position: sticky;
+  top: 105px;
 
+  min-height: 700px;
+  overflow: hidden;
 
-    /* =========================================================
-       FOOTER
-       ========================================================= */
+  border:
+    1px solid var(--line);
 
-    footer {
-      padding: 60px 0 110px;
+  border-radius: 28px;
 
-      text-align: center;
-    }
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      rgba(216,184,103,.16),
+      transparent 30%
+    ),
+    #0b1525;
 
-    .footer-symbol {
-      color: var(--gold);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.4);
+}
 
-      font-family: Georgia, serif;
-      font-size: 2.3rem;
-    }
+.profile-image {
+  width: 100%;
+  height: 700px;
 
-    .footer-title {
-      margin-top: 8px;
+  object-fit: cover;
+  object-position: center top;
+}
 
-      color: var(--ivory);
+.profile-image-gradient {
+  position: absolute;
+  inset: 0;
 
-      font-family: Georgia, serif;
+  pointer-events: none;
 
-      letter-spacing: .1em;
-    }
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 62%,
+      rgba(3,8,16,.30),
+      rgba(3,8,16,.78)
+    );
+}
 
-    .footer-copy {
-      margin-top: 8px;
+.profile-image-label {
+  position: absolute;
+  left: 25px;
+  bottom: 24px;
 
-      color: #68768b;
-      font-size: .68rem;
-    }
+  color: var(--gold-light);
 
+  font-size: .65rem;
+  letter-spacing: .14em;
+}
 
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
+.profile-main {
+  padding-top: 20px;
+}
 
-    @media (max-width: 1000px) {
+.profile-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 
-      .hero-grid,
-      .intro-grid {
-        grid-template-columns: 1fr;
-      }
+  margin-bottom: 18px;
+}
 
-      .character-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
+.profile-name {
+  color: var(--ivory);
 
-      .orders {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
+  font-family: Georgia, serif;
 
-    }
+  font-size:
+    clamp(3.4rem, 7vw, 6.5rem);
 
+  line-height: .9;
+  letter-spacing: -.055em;
+}
 
-    @media (max-width: 760px) {
+.profile-name-en {
+  margin-top: 15px;
 
-      .section {
-        padding: 80px 0;
-      }
+  color: var(--gold);
 
-      .menu-toggle {
-        display: block;
-      }
+  font-size: .83rem;
+  font-weight: 800;
+  letter-spacing: .24em;
+}
 
-      .nav-links {
-        position: absolute;
+.profile-quote {
+  margin-top: 35px;
+  padding-left: 22px;
 
-        top: 72px;
-        left: 0;
-        right: 0;
+  max-width: 760px;
 
-        display: none;
+  color: #d9e1ec;
 
-        padding: 20px;
+  border-left:
+    2px solid var(--gold);
 
-        flex-direction: column;
-        align-items: stretch;
+  font-family: Georgia, serif;
+  font-size: 1.28rem;
+  line-height: 1.7;
+}
 
-        background:
-          rgba(4,9,18,.98);
+.profile-summary {
+  margin-top: 32px;
 
-        border-bottom:
-          1px solid rgba(255,255,255,.06);
-      }
+  max-width: 790px;
 
-      .nav-links.open {
-        display: flex;
-      }
+  color: #aebacb;
 
-      .character-grid,
-      .department-grid,
-      .academy-facts,
-      .orders,
-      .event-sub {
-        grid-template-columns: 1fr;
-      }
+  font-size: .96rem;
+}
 
-      .hero {
-        padding-top: 120px;
-      }
+.profile-info-grid {
+  margin-top: 38px;
 
-      .hero-card {
-        min-height: 400px;
-      }
+  display: grid;
+  grid-template-columns:
+    repeat(2, 1fr);
 
-    }
+  gap: 11px;
+}
 
+.profile-info {
+  padding: 18px;
 
-    @media (max-width: 520px) {
+  border:
+    1px solid rgba(255,255,255,.065);
 
-      .container,
-      .nav {
-        width:
-          min(calc(100% - 28px), var(--max));
-      }
+  border-radius: 13px;
 
-      .character-card {
-        min-height: 450px;
-      }
+  background:
+    rgba(255,255,255,.025);
+}
 
-      .hero-actions {
-        flex-direction: column;
-      }
+.profile-info-label {
+  color: var(--gold);
 
-      .button {
-        width: 100%;
-      }
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
 
-    }
+.profile-info-value {
+  margin-top: 5px;
 
-  </style>
+  color: #e4ebf5;
+  font-size: .88rem;
+}
+
+.profile-section {
+  margin-top: 45px;
+}
+
+.profile-section-title {
+  padding-bottom: 10px;
+
+  color: var(--ivory);
+
+  border-bottom:
+    1px solid var(--line);
+
+  font-family: Georgia, serif;
+  font-size: 1.35rem;
+}
+
+.profile-section p {
+  margin-top: 18px;
+
+  color: #a5b2c4;
+  font-size: .9rem;
+}
+
+.profile-keywords {
+  margin-top: 18px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.profile-keyword {
+  padding: 8px 12px;
+
+  color: #d1d9e5;
+
+  border:
+    1px solid rgba(255,255,255,.075);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.025);
+
+  font-size: .71rem;
+}
+
+
+/* ==========================================================
+   MUSIC
+   ========================================================== */
+
+.music-player {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+
+  z-index: 3000;
+
+  width:
+    min(330px, calc(100vw - 30px));
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(216,184,103,.20);
+
+  border-radius: 17px;
+
+  background:
+    rgba(5,12,24,.93);
+
+  backdrop-filter:
+    blur(18px);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.42);
+}
+
+.profile-open .music-player {
+  opacity: .18;
+  pointer-events: none;
+}
+
+.music-header {
+  padding: 14px 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.05);
+}
+
+.music-title {
+  color: var(--ivory);
+  font-size: .73rem;
+  font-weight: 800;
+}
+
+.music-track {
+  color: #75849b;
+  font-size: .61rem;
+}
+
+.music-collapse {
+  width: 30px;
+  height: 30px;
+
+  color: #cad3e0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background:
+    rgba(255,255,255,.05);
+}
+
+.music-body {
+  padding: 15px 16px;
+}
+
+.music-player.collapsed
+.music-body {
+  display: none;
+}
+
+.music-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.music-button {
+  height: 38px;
+  padding: 0 15px;
+
+  color: #121820;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: var(--gold);
+
+  font-size: .7rem;
+  font-weight: 900;
+}
+
+.volume {
+  width: 100%;
+  accent-color: var(--gold);
+}
+
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+footer {
+  padding: 60px 0 110px;
+  text-align: center;
+}
+
+.footer-symbol {
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: 2.3rem;
+}
+
+.footer-title {
+  margin-top: 8px;
+
+  color: var(--ivory);
+
+  font-family: Georgia, serif;
+  letter-spacing: .1em;
+}
+
+.footer-copy {
+  margin-top: 8px;
+
+  color: #68768b;
+  font-size: .68rem;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 1000px) {
+
+  .hero-grid,
+  .intro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .character-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .orders {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .profile-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-image-wrap {
+    position: relative;
+    top: auto;
+
+    min-height: 600px;
+  }
+
+  .profile-image {
+    height: 600px;
+  }
+
+}
+
+
+@media (max-width: 760px) {
+
+  .section {
+    padding: 80px 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+
+    display: none;
+
+    padding: 20px;
+
+    flex-direction: column;
+
+    background:
+      rgba(4,9,18,.98);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .character-grid,
+  .department-grid,
+  .academy-facts,
+  .orders,
+  .event-sub {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-container {
+    width:
+      min(calc(100% - 28px), 1380px);
+
+    padding-top: 25px;
+  }
+
+  .profile-image-wrap {
+    min-height: 510px;
+  }
+
+  .profile-image {
+    height: 510px;
+  }
+
+}
+
+
+@media (max-width: 520px) {
+
+  .container,
+  .nav {
+    width:
+      min(calc(100% - 28px), var(--max));
+  }
+
+  .character-card {
+    min-height: 470px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .profile-image-wrap {
+    min-height: 440px;
+  }
+
+  .profile-image {
+    height: 440px;
+  }
+
+}
+</style>
 </head>
 
 
 <body>
 
+<!-- ==========================================================
+     NAV
+     ========================================================== -->
 
-  <!-- =========================================================
-       HEADER
-       ========================================================= -->
+<header class="site-header">
 
-  <header class="site-header">
+<nav class="nav">
 
-    <nav class="nav">
+<a class="brand" href="#home">
 
-      <a
-        class="brand"
-        href="#home"
-      >
+<div class="brand-symbol">
+✦
+</div>
 
-        <div class="brand-symbol">
-          ✦
-        </div>
+<div class="brand-name">
+SERAPH ACADEMY
+</div>
 
-        <div class="brand-name">
-          SERAPH ACADEMY
-        </div>
+</a>
 
-      </a>
 
+<button
+  class="menu-toggle"
+  id="menuToggle"
+>
+☰
+</button>
 
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="메뉴 열기"
-      >
-        ☰
-      </button>
 
+<ul
+  class="nav-links"
+  id="navLinks"
+>
 
-      <ul
-        class="nav-links"
-        id="navLinks"
-      >
+<li>
+<a href="#academy">아카데미 소개</a>
+</li>
 
-        <li>
-          <a href="#academy">
-            아카데미 소개
-          </a>
-        </li>
+<li>
+<a href="#faculty">교직원</a>
+</li>
 
-        <li>
-          <a href="#faculty">
-            교직원
-          </a>
-        </li>
+<li>
+<a href="#students">학생</a>
+</li>
 
-        <li>
-          <a href="#students">
-            학생
-          </a>
-        </li>
+<li>
+<a href="#departments">전공 과목</a>
+</li>
 
-        <li>
-          <a href="#departments">
-            전공 과목
-          </a>
-        </li>
+<li>
+<a href="#events">행사</a>
+</li>
 
-        <li>
-          <a href="#events">
-            행사
-          </a>
-        </li>
+</ul>
 
-      </ul>
+</nav>
 
-    </nav>
+</header>
 
-  </header>
 
 
+<main>
 
-  <main>
 
+<!-- ==========================================================
+     HERO
+     ========================================================== -->
 
-    <!-- =======================================================
-         HERO
-         ======================================================= -->
+<section
+  class="hero"
+  id="home"
+>
 
-    <section
-      class="hero"
-      id="home"
-    >
+<div class="container hero-grid">
 
-      <div class="container hero-grid">
+<div>
 
-        <div>
+<div class="hero-kicker">
+CELESTIAL EDUCATION ARCHIVE
+</div>
 
-          <div class="hero-kicker">
-            CELESTIAL EDUCATION ARCHIVE
-          </div>
+<h1>
+SERAPH
+<span>ACADEMY</span>
+</h1>
 
-          <h1>
-            SERAPH
-            <span>ACADEMY</span>
-          </h1>
+<p class="hero-subtitle">
+천계를 수호할 차세대 천사를 육성하는 최고 교육기관.
+신성, 지식, 전투, 기적과 자유의지.
+천사는 이곳에서 자신의 날개가 향할 곳을 결정한다.
+</p>
 
-          <p class="hero-subtitle">
-            천계를 수호할 차세대 천사를 육성하는 최고 교육기관.
-            학생들은 신성, 지식, 전투, 기적, 통솔과 자유의지를
-            배우며 자신의 날개가 향할 곳을 결정한다.
-          </p>
+<div class="hero-actions">
 
-          <div class="hero-actions">
+<a
+  class="button button-primary"
+  href="#academy"
+>
+아카데미 열람
+</a>
 
-            <a
-              class="button button-primary"
-              href="#academy"
-            >
-              아카데미 열람
-            </a>
+<a
+  class="button button-secondary"
+  href="#students"
+>
+재학생 명부
+</a>
 
-            <a
-              class="button button-secondary"
-              href="#students"
-            >
-              재학생 명부
-            </a>
+</div>
 
-          </div>
+</div>
 
-        </div>
 
+<div class="hero-card">
 
-        <div class="hero-card">
+<div class="hero-symbol">
+♢
+</div>
 
-          <div class="hero-symbol">
-            ♢
-          </div>
+<div class="hero-card-label">
+ARCHIVE FILE : SA-001
+</div>
 
-          <div class="hero-card-label">
-            ARCHIVE FILE : SA-001
-          </div>
+<h2>
+천사를 기르는 학교
+</h2>
 
-          <h2>
-            천사를 기르는 학교
-          </h2>
+<p>
+교육과 경쟁, 인간계 실습,
+그리고 천칭의 심판을 거쳐
+학생들의 정식 품계와 사명이 결정된다.
+</p>
 
-          <p>
-            교육, 실전, 인간계 파견,
-            그리고 천칭의 심판을 통해
-            학생들의 정식 품계와 사명이 결정된다.
-          </p>
+</div>
 
-        </div>
+</div>
 
-      </div>
+</section>
 
-    </section>
 
 
+<div class="divider"></div>
 
-    <div class="divider"></div>
 
 
+<!-- ==========================================================
+     ACADEMY
+     ========================================================== -->
 
-    <!-- =======================================================
-         ACADEMY
-         ======================================================= -->
+<section
+  class="section"
+  id="academy"
+>
 
-    <section
-      class="section"
-      id="academy"
-    >
+<div class="container">
 
-      <div class="container">
+<div class="section-title-wrap">
 
-        <div class="section-title-wrap">
+<div class="eyebrow">
+ABOUT THE ACADEMY
+</div>
 
-          <div class="eyebrow">
-            ABOUT THE ACADEMY
-          </div>
+<h2 class="section-title">
+아카데미 소개
+</h2>
 
-          <h2 class="section-title">
-            아카데미 소개
-          </h2>
+<p class="section-description">
+세라프 아카데미는 천계 직속 교육기관으로,
+각 천사의 적성과 잠재력을 검증하여
+정식 품계와 사명을 부여하는 엘리트 육성기관이다.
+</p>
 
-          <p class="section-description">
-            세라프 아카데미는 천계 직속 교육기관이다.
-            미숙한 천사를 교육하여 각각의 적성과 잠재력에 맞는
-            천계의 직무와 정식 품계를 부여한다.
-          </p>
+</div>
 
-        </div>
 
+<div class="intro-grid">
 
-        <div class="intro-grid">
+<div class="info-panel">
 
-          <div class="info-panel">
+<div class="quote">
 
-            <div class="quote">
+“날개는 태어날 때 주어지지만,
+어디로 날아갈지는 이곳에서 결정된다.”
 
-              “날개는 태어날 때 주어지지만,
-              어디로 날아갈지는 이곳에서 결정된다.”
+<small>
+— SERAPH ACADEMY
+</small>
 
-              <small>
-                — SERAPH ACADEMY
-              </small>
+</div>
 
-            </div>
+</div>
 
-          </div>
 
+<div class="academy-facts">
 
-          <div class="academy-facts">
+<div class="fact">
+<div class="fact-label">INSTITUTION</div>
+<div class="fact-value">천계 직속 엘리트 교육기관</div>
+</div>
 
-            <div class="fact">
-              <div class="fact-label">
-                INSTITUTION
-              </div>
+<div class="fact">
+<div class="fact-label">PROGRAM</div>
+<div class="fact-value">3년제 정규 과정</div>
+</div>
 
-              <div class="fact-value">
-                천계 직속 엘리트 육성기관
-              </div>
-            </div>
+<div class="fact">
+<div class="fact-label">PRINCIPAL</div>
+<div class="fact-value">루시펠 · 제1품 치천사</div>
+</div>
 
+<div class="fact">
+<div class="fact-label">ORDER</div>
+<div class="fact-value">천사 9품계</div>
+</div>
 
-            <div class="fact">
-              <div class="fact-label">
-                PROGRAM
-              </div>
+<div class="fact">
+<div class="fact-label">GRADUATION</div>
+<div class="fact-value">정식 품계 및 직무 배정</div>
+</div>
+
+<div class="fact">
+<div class="fact-label">MOTTO</div>
+<div class="fact-value">Scientia · Fides · Voluntas</div>
+</div>
+
+</div>
 
-              <div class="fact-value">
-                3년제 정규 과정
-              </div>
-            </div>
+</div>
 
 
-            <div class="fact">
-              <div class="fact-label">
-                PRINCIPAL
-              </div>
+<div class="orders">
 
-              <div class="fact-value">
-                루시펠
-              </div>
-            </div>
+<div class="order">
+<div class="order-number">1</div>
+<strong>치천사</strong>
+<span>SERAPHIM</span>
+<p>
+천계 최고위 존재.
+심판과 의사결정, 세계 질서의 수호를 담당한다.
+</p>
+</div>
 
+<div class="order">
+<div class="order-number">2</div>
+<strong>지천사</strong>
+<span>CHERUBIM</span>
+<p>
+천계의 지식, 기록, 법칙과
+최상위 성물을 관리하는 전문가.
+</p>
+</div>
 
-            <div class="fact">
-              <div class="fact-label">
-                ORDER
-              </div>
+<div class="order">
+<div class="order-number">3</div>
+<strong>좌천사</strong>
+<span>THRONES</span>
+<p>
+관측과 감찰을 수행하며
+심판을 위한 진실과 기록을 확보한다.
+</p>
+</div>
 
-              <div class="fact-value">
-                천사의 9품계
-              </div>
-            </div>
+<div class="order">
+<div class="order-number">4</div>
+<strong>주천사</strong>
+<span>DOMINIONS</span>
+<p>
+천사 조직과 부대를 지휘하고
+행정과 분쟁 조정을 담당한다.
+</p>
+</div>
 
+<div class="order">
+<div class="order-number">5</div>
+<strong>역천사</strong>
+<span>VIRTUES</span>
+<p>
+축복과 치유, 기적,
+성역 구축과 현실 개입을 담당한다.
+</p>
+</div>
 
-            <div class="fact">
-              <div class="fact-label">
-                GRADUATION
-              </div>
+<div class="order">
+<div class="order-number">6</div>
+<strong>능천사</strong>
+<span>POWERS</span>
+<p>
+악마와 타락천사에 맞서는
+천계 군사력의 핵심.
+</p>
+</div>
 
-              <div class="fact-value">
-                정식 품계 및 직무 배정
-              </div>
-            </div>
+<div class="order">
+<div class="order-number">7</div>
+<strong>권천사</strong>
+<span>PRINCIPALITIES</span>
+<p>
+도시, 국가와 집단을 관리하는
+천계의 외교·행정 담당.
+</p>
+</div>
 
+<div class="order">
+<div class="order-number">8</div>
+<strong>대천사</strong>
+<span>ARCHANGELS</span>
+<p>
+인간계와 천계의 고위험
+특수임무를 수행하는 현장 전문가.
+</p>
+</div>
 
-            <div class="fact">
-              <div class="fact-label">
-                MOTTO
-              </div>
+<div class="order">
+<div class="order-number">9</div>
+<strong>천사</strong>
+<span>ANGELS</span>
+<p>
+인간과 가장 가까운 존재.
+수호, 계시와 영혼 인도를 담당한다.
+</p>
+</div>
 
-              <div class="fact-value">
-                Scientia · Fides · Voluntas
-              </div>
-            </div>
+</div>
 
-          </div>
+</div>
 
-        </div>
+</section>
 
 
 
-        <div class="orders">
+<div class="divider"></div>
 
 
-          <div class="order">
-            <div class="order-number">1</div>
-            <strong>치천사</strong>
-            <span>SERAPHIM</span>
-            <p>
-              천계 최고 의사결정과 심판.
-              세계의 질서를 판단하는 자.
-            </p>
-          </div>
 
+<!-- ==========================================================
+     FACULTY
+     ========================================================== -->
 
-          <div class="order">
-            <div class="order-number">2</div>
-            <strong>지천사</strong>
-            <span>CHERUBIM</span>
-            <p>
-              지식, 기록, 성물과
-              천계의 법칙을 관리한다.
-            </p>
-          </div>
+<section
+  class="section"
+  id="faculty"
+>
 
+<div class="container">
 
-          <div class="order">
-            <div class="order-number">3</div>
-            <strong>좌천사</strong>
-            <span>THRONES</span>
-            <p>
-              관측, 감찰과 재판을 위한
-              진실의 기록을 담당한다.
-            </p>
-          </div>
+<div class="section-title-wrap">
 
+<div class="eyebrow">
+FACULTY
+</div>
 
-          <div class="order">
-            <div class="order-number">4</div>
-            <strong>주천사</strong>
-            <span>DOMINIONS</span>
-            <p>
-              천사를 지휘하고
-              조직과 질서를 관리한다.
-            </p>
-          </div>
+<h2 class="section-title">
+교직원
+</h2>
 
+<p class="section-description">
+아카데미의 최고위 교직원.
+4대천사는 품계와 별개로 천계에서 부여되는 특별 직위다.
+</p>
 
-          <div class="order">
-            <div class="order-number">5</div>
-            <strong>역천사</strong>
-            <span>VIRTUES</span>
-            <p>
-              축복, 치유, 성역과
-              기적의 발현을 담당한다.
-            </p>
-          </div>
+</div>
 
 
-          <div class="order">
-            <div class="order-number">6</div>
-            <strong>능천사</strong>
-            <span>POWERS</span>
-            <p>
-              악마와 타락 존재에 맞서는
-              천계의 전투전력.
-            </p>
-          </div>
+<div class="character-grid">
 
 
-          <div class="order">
-            <div class="order-number">7</div>
-            <strong>권천사</strong>
-            <span>PRINCIPALITIES</span>
-            <p>
-              도시와 국가, 집단을 관리하는
-              외교·행정 담당.
-            </p>
-          </div>
+<!-- LUCIFER -->
 
+<article
+  class="character-card"
+  data-character="lucifer"
+  tabindex="0"
+  role="button"
+>
 
-          <div class="order">
-            <div class="order-number">8</div>
-            <strong>대천사</strong>
-            <span>ARCHANGELS</span>
-            <p>
-              인간계 특수임무를 수행하는
-              현장 전문가.
-            </p>
-          </div>
+<div class="character-placeholder">
+<div class="placeholder-symbol">♛</div>
+</div>
 
+<img
+  class="character-image"
+  src="assets/images/characters/lucifer.webp"
+  alt="루시펠"
+  loading="lazy"
+>
 
-          <div class="order">
-            <div class="order-number">9</div>
-            <strong>천사</strong>
-            <span>ANGELS</span>
-            <p>
-              인간과 가장 가까운
-              수호와 계시의 천사.
-            </p>
-          </div>
+<div class="character-overlay"></div>
 
-        </div>
+<div class="character-content">
 
-      </div>
+<div class="character-meta">
+<span class="tag tag-gold">교장</span>
+<span class="tag">제1품 치천사</span>
+</div>
 
-    </section>
+<h3 class="character-name">
+루시펠
+</h3>
 
+<div class="character-name-en">
+LUCIFER
+</div>
 
+<p class="character-description">
+백발의 남성 치천사.
+세라프 아카데미의 최고 책임자.
+</p>
 
-    <div class="divider"></div>
+<div class="character-open">
+상세 프로필
+</div>
 
+</div>
 
+</article>
 
-    <!-- =======================================================
-         FACULTY
-         ======================================================= -->
 
-    <section
-      class="section"
-      id="faculty"
-    >
 
-      <div class="container">
+<!-- MICHAEL -->
 
-        <div class="section-title-wrap">
+<article
+  class="character-card"
+  data-character="michael"
+  tabindex="0"
+  role="button"
+>
 
-          <div class="eyebrow">
-            FACULTY
-          </div>
+<div class="character-placeholder">
+<div class="placeholder-symbol">⚔</div>
+</div>
 
-          <h2 class="section-title">
-            교직원
-          </h2>
+<img
+  class="character-image"
+  src="assets/images/characters/michael.webp"
+  alt="미카엘"
+  loading="lazy"
+>
 
-          <p class="section-description">
-            세라프 아카데미의 최고위 교직원.
-            4대천사는 천계가 부여하는 특별 직위이며
-            실제 천사 품계와는 별도로 취급된다.
-          </p>
+<div class="character-overlay"></div>
 
-        </div>
+<div class="character-content">
 
+<div class="character-meta">
+<span class="tag tag-gold">전투 교관</span>
+<span class="tag">제1품 치천사</span>
+<span class="tag">4대천사</span>
+</div>
 
-        <div class="character-grid">
+<h3 class="character-name">
+미카엘
+</h3>
 
+<div class="character-name-en">
+MICHAEL
+</div>
 
-          <!-- =================================================
-               LUCIFER
-               ================================================= -->
+<p class="character-description">
+금발의 남성 치천사.
+천계 최강급 전사이자 성전학과의 총책임자.
+</p>
 
-          <article class="character-card">
+<div class="character-open">
+상세 프로필
+</div>
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ♛
-              </div>
-            </div>
+</div>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/lucifer.webp"
-              alt="루시펠"
-              loading="lazy"
-            >
+</article>
 
-            <div class="character-overlay"></div>
 
-            <div class="character-content">
 
-              <div class="character-meta">
-                <span class="tag tag-gold">
-                  총장
-                </span>
+<!-- GABRIEL -->
 
-                <span class="tag">
-                  제1품 치천사
-                </span>
+<article
+  class="character-card"
+  data-character="gabriel"
+  tabindex="0"
+  role="button"
+>
 
-                <span class="tag">
-                  천사장
-                </span>
-              </div>
+<div class="character-placeholder">
+<div class="placeholder-symbol">◇</div>
+</div>
 
-              <h3 class="character-name">
-                루시펠
-              </h3>
+<img
+  class="character-image"
+  src="assets/images/characters/gabriel.webp"
+  alt="가브리엘"
+  loading="lazy"
+>
 
-              <div class="character-name-en">
-                LUCIFER
-              </div>
+<div class="character-overlay"></div>
 
-              <p class="character-description">
-                백발의 남성 치천사, 미카엘의 형.
-                세라프 아카데미의 절대적 최고 책임자이자 모든 천사들의 장.
-                부드러운 미소와 압도적인 권위를 동시에 지닌다.
-              </p>
+<div class="character-content">
 
-            </div>
+<div class="character-meta">
+<span class="tag tag-gold">교관</span>
+<span class="tag">제2품 지천사</span>
+<span class="tag">4대천사</span>
+</div>
 
-          </article>
+<h3 class="character-name">
+가브리엘
+</h3>
 
+<div class="character-name-en">
+GABRIEL
+</div>
 
+<p class="character-description">
+물을 상징하는 여성 지천사.
+계시와 전령 분야를 총괄한다.
+</p>
 
-          <!-- =================================================
-               MICHAEL
-               ================================================= -->
+<div class="character-open">
+상세 프로필
+</div>
 
-          <article class="character-card">
+</div>
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ⚔
-              </div>
-            </div>
+</article>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/michael.webp"
-              alt="미카엘"
-              loading="lazy"
-            >
 
-            <div class="character-overlay"></div>
 
-            <div class="character-content">
+<!-- RAPHAEL -->
 
-              <div class="character-meta">
+<article
+  class="character-card"
+  data-character="raphael"
+  tabindex="0"
+  role="button"
+>
 
-                <span class="tag tag-gold">
-                  부총장
-                </span>
+<div class="character-placeholder">
+<div class="placeholder-symbol">✚</div>
+</div>
 
-                <span class="tag">
-                  제1품 치천사
-                </span>
+<img
+  class="character-image"
+  src="assets/images/characters/raphael.webp"
+  alt="라파엘"
+  loading="lazy"
+>
 
-                <span class="tag">
-                  4대천사
-                </span>
+<div class="character-overlay"></div>
 
-              </div>
+<div class="character-content">
 
-              <h3 class="character-name">
-                미카엘
-              </h3>
+<div class="character-meta">
+<span class="tag tag-gold">교관</span>
+<span class="tag">제2품 지천사</span>
+<span class="tag">4대천사</span>
+</div>
 
-              <div class="character-name-en">
-                MICHAEL
-              </div>
+<h3 class="character-name">
+라파엘
+</h3>
 
-              <p class="character-description">
-                금발의 남성 치천사, 루시펠의 동생.
-                루시펠과 동격의 전투력을 지닌 천계 최강급 전투천사이자
-                성전학과의 총책임자.
-              </p>
+<div class="character-name-en">
+RAPHAEL
+</div>
 
-            </div>
+<p class="character-description">
+녹색 머리의 여성 지천사.
+치유와 신성술 분야의 최고 권위자.
+</p>
 
-          </article>
+<div class="character-open">
+상세 프로필
+</div>
 
+</div>
 
+</article>
 
-          <!-- =================================================
-               GABRIEL
-               ================================================= -->
 
-          <article class="character-card">
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ◇
-              </div>
-            </div>
+<!-- URIEL -->
 
-            <img
-              class="character-image"
-              src="assets/images/characters/gabriel.webp"
-              alt="가브리엘"
-              loading="lazy"
-            >
+<article
+  class="character-card"
+  data-character="uriel"
+  tabindex="0"
+  role="button"
+>
 
-            <div class="character-overlay"></div>
+<div class="character-placeholder">
+<div class="placeholder-symbol">☼</div>
+</div>
 
-            <div class="character-content">
+<img
+  class="character-image"
+  src="assets/images/characters/uriel.webp"
+  alt="우리엘"
+  loading="lazy"
+>
 
-              <div class="character-meta">
+<div class="character-overlay"></div>
 
-                <span class="tag tag-gold">
-                  교관
-                </span>
+<div class="character-content">
 
-                <span class="tag">
-                  제2품 지천사
-                </span>
+<div class="character-meta">
+<span class="tag tag-gold">교관</span>
+<span class="tag">제2품 지천사</span>
+<span class="tag">4대천사</span>
+</div>
 
-                <span class="tag">
-                  4대천사
-                </span>
+<h3 class="character-name">
+우리엘
+</h3>
 
-              </div>
+<div class="character-name-en">
+URIEL
+</div>
 
-              <h3 class="character-name">
-                가브리엘
-              </h3>
+<p class="character-description">
+불과 빛을 상징하는 여성 지천사.
+천문과 예언, 고위 신학을 담당한다.
+</p>
 
-              <div class="character-name-en">
-                GABRIEL
-              </div>
+<div class="character-open">
+상세 프로필
+</div>
 
-              <p class="character-description">
-                물의 속성을 지닌 여성 천사.
-                계시, 전령, 천계 행정과
-                정보 전달을 담당한다.
-              </p>
+</div>
 
-            </div>
+</article>
 
-          </article>
+</div>
 
+</div>
 
+</section>
 
-          <!-- =================================================
-               RAPHAEL
-               ================================================= -->
 
-          <article class="character-card">
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ✚
-              </div>
-            </div>
+<div class="divider"></div>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/raphael.webp"
-              alt="라파엘"
-              loading="lazy"
-            >
 
-            <div class="character-overlay"></div>
 
-            <div class="character-content">
+<!-- ==========================================================
+     STUDENTS
+     ========================================================== -->
 
-              <div class="character-meta">
+<section
+  class="section"
+  id="students"
+>
 
-                <span class="tag tag-gold">
-                  교관
-                </span>
+<div class="container">
 
-                <span class="tag">
-                  제2품 지천사
-                </span>
+<div class="section-title-wrap">
 
-                <span class="tag">
-                  4대천사
-                </span>
+<div class="eyebrow">
+STUDENT REGISTRY
+</div>
 
-              </div>
+<h2 class="section-title">
+학생
+</h2>
 
-              <h3 class="character-name">
-                라파엘
-              </h3>
+<p class="section-description">
+학년과 잠정 품계에 따라 분류되는
+세라프 아카데미 재학생 명부.
+</p>
 
-              <div class="character-name-en">
-                RAPHAEL
-              </div>
+</div>
 
-              <p class="character-description">
-                녹색 머리의 치유 담당 천사.
-                신성술학과와 성흔의료원을 관리한다.
-              </p>
 
-            </div>
+<div class="tabs">
 
-          </article>
+<button
+  class="tab-button active"
+  data-grade="all"
+>
+전체
+</button>
 
+<button
+  class="tab-button"
+  data-grade="1"
+>
+1학년
+</button>
 
+<button
+  class="tab-button"
+  data-grade="2"
+>
+2학년
+</button>
 
-          <!-- =================================================
-               URIEL
-               ================================================= -->
+<button
+  class="tab-button"
+  data-grade="3"
+>
+3학년
+</button>
 
-          <article class="character-card">
+</div>
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ☼
-              </div>
-            </div>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/uriel.webp"
-              alt="우리엘"
-              loading="lazy"
-            >
+<div class="character-grid">
 
-            <div class="character-overlay"></div>
 
-            <div class="character-content">
+<!-- LAILAH -->
 
-              <div class="character-meta">
+<article
+  class="character-card student-card show"
+  data-grade="1"
+  data-character="lailah"
+  tabindex="0"
+  role="button"
+>
 
-                <span class="tag tag-gold">
-                  교관
-                </span>
+<div class="character-placeholder">
+<div class="placeholder-symbol">☾</div>
+</div>
 
-                <span class="tag">
-                  제2품 지천사
-                </span>
+<img
+  class="character-image"
+  src="assets/images/characters/lailah.webp"
+  alt="라일라"
+  loading="lazy"
+>
 
-                <span class="tag">
-                  4대천사
-                </span>
+<div class="character-overlay"></div>
 
-              </div>
+<div class="character-content">
 
-              <h3 class="character-name">
-                우리엘
-              </h3>
+<div class="character-meta">
+<span class="tag tag-gold">1학년</span>
+<span class="tag">제9품 천사</span>
+</div>
 
-              <div class="character-name-en">
-                URIEL
-              </div>
+<h3 class="character-name">라일라</h3>
 
-              <p class="character-description">
-                불과 빛을 상징하는 여성 천사.
-                예언, 천문, 고위 신학과
-                천계 법칙을 가르친다.
-              </p>
+<div class="character-name-en">
+LAILAH
+</div>
 
-            </div>
+<p class="character-description">
+밤과 탄생을 상징하는 신입생.
+인간과의 공명 능력이 뛰어나다.
+</p>
 
-          </article>
+<div class="character-open">
+상세 프로필
+</div>
 
+</div>
 
-        </div>
+</article>
 
-      </div>
 
-    </section>
 
+<!-- BARACHIEL -->
 
+<article
+  class="character-card student-card show"
+  data-grade="1"
+  data-character="barachiel"
+  tabindex="0"
+  role="button"
+>
 
-    <div class="divider"></div>
+<div class="character-placeholder">
+<div class="placeholder-symbol">✧</div>
+</div>
 
+<img
+  class="character-image"
+  src="assets/images/characters/barachiel.webp"
+  alt="바라키엘"
+  loading="lazy"
+>
 
+<div class="character-overlay"></div>
 
-    <!-- =======================================================
-         STUDENTS
-         ======================================================= -->
+<div class="character-content">
 
-    <section
-      class="section"
-      id="students"
-    >
+<div class="character-meta">
+<span class="tag tag-gold">1학년</span>
+<span class="tag">제5품 역천사</span>
+</div>
 
-      <div class="container">
+<h3 class="character-name">
+바라키엘
+</h3>
 
-        <div class="section-title-wrap">
+<div class="character-name-en">
+BARACHIEL
+</div>
 
-          <div class="eyebrow">
-            STUDENT REGISTRY
-          </div>
+<p class="character-description">
+축복과 행운을 다루는
+밝고 친화적인 천사.
+</p>
 
-          <h2 class="section-title">
-            학생
-          </h2>
+<div class="character-open">
+상세 프로필
+</div>
 
-          <p class="section-description">
-            재학생은 학년별로 분류된다.
-            품계와 직무 적성은 교육 과정에 따라
-            지속적으로 재평가된다.
-          </p>
+</div>
 
-        </div>
+</article>
 
 
-        <div class="tabs">
 
-          <button
-            class="tab-button active"
-            data-grade="all"
-          >
-            전체
-          </button>
+<!-- RAZIEL -->
 
-          <button
-            class="tab-button"
-            data-grade="1"
-          >
-            1학년
-          </button>
+<article
+  class="character-card student-card show"
+  data-grade="2"
+  data-character="raziel"
+  tabindex="0"
+  role="button"
+>
 
-          <button
-            class="tab-button"
-            data-grade="2"
-          >
-            2학년
-          </button>
+<div class="character-placeholder">
+<div class="placeholder-symbol">◉</div>
+</div>
 
-          <button
-            class="tab-button"
-            data-grade="3"
-          >
-            3학년
-          </button>
+<img
+  class="character-image"
+  src="assets/images/characters/raziel.webp"
+  alt="라지엘"
+  loading="lazy"
+>
 
-        </div>
+<div class="character-overlay"></div>
 
+<div class="character-content">
 
+<div class="character-meta">
+<span class="tag tag-gold">2학년</span>
+<span class="tag">제3품 좌천사</span>
+</div>
 
-        <div class="character-grid">
+<h3 class="character-name">
+라지엘
+</h3>
 
+<div class="character-name-en">
+RAZIEL
+</div>
 
-          <!-- =================================================
-               LAILAH
-               ================================================= -->
+<p class="character-description">
+천계의 비밀과 숨겨진 법칙을 탐구하는
+신비주의적 엘리트.
+</p>
 
-          <article
-            class="character-card student-card show"
-            data-grade="1"
-          >
+<div class="character-open">
+상세 프로필
+</div>
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ☾
-              </div>
-            </div>
+</div>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/lailah.webp"
-              alt="라일라"
-              loading="lazy"
-            >
+</article>
 
-            <div class="character-overlay"></div>
 
-            <div class="character-content">
 
-              <div class="character-meta">
+<!-- ZADKIEL -->
 
-                <span class="tag tag-gold">
-                  1학년
-                </span>
+<article
+  class="character-card student-card show"
+  data-grade="2"
+  data-character="zadkiel"
+  tabindex="0"
+  role="button"
+>
 
-                <span class="tag">
-                  제9품 천사
-                </span>
+<div class="character-placeholder">
+<div class="placeholder-symbol">♡</div>
+</div>
 
-              </div>
+<img
+  class="character-image"
+  src="assets/images/characters/zadkiel.webp"
+  alt="자드키엘"
+  loading="lazy"
+>
 
-              <h3 class="character-name">
-                라일라
-              </h3>
+<div class="character-overlay"></div>
 
-              <div class="character-name-en">
-                LAILAH
-              </div>
+<div class="character-content">
 
-              <p class="character-description">
-                밤과 탄생을 상징하는 신입생.
-                인간과의 공명 능력이 특히 뛰어나다.
-              </p>
+<div class="character-meta">
+<span class="tag tag-gold">2학년</span>
+<span class="tag">제4품 주천사</span>
+</div>
 
-            </div>
+<h3 class="character-name">
+자드키엘
+</h3>
 
-          </article>
+<div class="character-name-en">
+ZADKIEL
+</div>
 
+<p class="character-description">
+자비와 용서를 중시하는
+온화한 중재자.
+</p>
 
+<div class="character-open">
+상세 프로필
+</div>
 
-          <!-- =================================================
-               BARACHIEL
-               ================================================= -->
+</div>
 
-          <article
-            class="character-card student-card show"
-            data-grade="1"
-          >
+</article>
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ✧
-              </div>
-            </div>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/barachiel.webp"
-              alt="바라키엘"
-              loading="lazy"
-            >
 
-            <div class="character-overlay"></div>
+<!-- CAMAEL -->
 
-            <div class="character-content">
+<article
+  class="character-card student-card show"
+  data-grade="2"
+  data-character="camael"
+  tabindex="0"
+  role="button"
+>
 
-              <div class="character-meta">
+<div class="character-placeholder">
+<div class="placeholder-symbol">⚔</div>
+</div>
 
-                <span class="tag tag-gold">
-                  1학년
-                </span>
+<img
+  class="character-image"
+  src="assets/images/characters/camael.webp"
+  alt="카마엘"
+  loading="lazy"
+>
 
-                <span class="tag">
-                  제5품 역품
-                </span>
+<div class="character-overlay"></div>
 
-              </div>
+<div class="character-content">
 
-              <h3 class="character-name">
-                바라키엘
-              </h3>
+<div class="character-meta">
+<span class="tag tag-gold">2학년</span>
+<span class="tag">제6품 능천사</span>
+</div>
 
-              <div class="character-name-en">
-                BARACHIEL
-              </div>
+<h3 class="character-name">
+카마엘
+</h3>
 
-              <p class="character-description">
-                축복과 행운을 다루는 밝은 학생.
-                주변의 가능성을 긍정적으로 변화시킨다.
-              </p>
+<div class="character-name-en">
+CAMAEL
+</div>
 
-            </div>
+<p class="character-description">
+미카엘을 동경하는
+성전학과의 전투 엘리트.
+</p>
 
-          </article>
+<div class="character-open">
+상세 프로필
+</div>
 
+</div>
 
+</article>
 
-          <!-- =================================================
-               RAZIEL
-               ================================================= -->
 
-          <article
-            class="character-card student-card show"
-            data-grade="2"
-          >
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ◉
-              </div>
-            </div>
+<!-- HANIEL -->
 
-            <img
-              class="character-image"
-              src="assets/images/characters/raziel.webp"
-              alt="라지엘"
-              loading="lazy"
-            >
+<article
+  class="character-card student-card show"
+  data-grade="2"
+  data-character="haniel"
+  tabindex="0"
+  role="button"
+>
 
-            <div class="character-overlay"></div>
+<div class="character-placeholder">
+<div class="placeholder-symbol">♢</div>
+</div>
 
-            <div class="character-content">
+<img
+  class="character-image"
+  src="assets/images/characters/haniel.webp"
+  alt="하니엘"
+  loading="lazy"
+>
 
-              <div class="character-meta">
+<div class="character-overlay"></div>
 
-                <span class="tag tag-gold">
-                  2학년
-                </span>
+<div class="character-content">
 
-                <span class="tag">
-                  제3품 좌품
-                </span>
+<div class="character-meta">
+<span class="tag tag-gold">2학년</span>
+<span class="tag">제7품 권천사</span>
+</div>
 
-              </div>
+<h3 class="character-name">
+하니엘
+</h3>
 
-              <h3 class="character-name">
-                라지엘
-              </h3>
+<div class="character-name-en">
+HANIEL
+</div>
 
-              <div class="character-name-en">
-                raziel
-              </div>
+<p class="character-description">
+외교와 인간관계에 능한
+우아한 학생.
+</p>
 
-              <p class="character-description">
-                감찰과 관측에 특화된 무표정한 천사.
-                타락 징후와 성력 변화를 읽어낸다.
-              </p>
+<div class="character-open">
+상세 프로필
+</div>
 
-            </div>
+</div>
 
-          </article>
+</article>
 
 
 
-          <!-- =================================================
-               ZADKIEL
-               ================================================= -->
+<!-- RAGUEL -->
 
-          <article
-            class="character-card student-card show"
-            data-grade="2"
-          >
+<article
+  class="character-card student-card show"
+  data-grade="2"
+  data-character="raguel"
+  tabindex="0"
+  role="button"
+>
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ♡
-              </div>
-            </div>
+<div class="character-placeholder">
+<div class="placeholder-symbol">⚖</div>
+</div>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/zadkiel.webp"
-              alt="자드키엘"
-              loading="lazy"
-            >
+<img
+  class="character-image"
+  src="assets/images/characters/raguel.webp"
+  alt="라구엘"
+  loading="lazy"
+>
 
-            <div class="character-overlay"></div>
+<div class="character-overlay"></div>
 
-            <div class="character-content">
+<div class="character-content">
 
-              <div class="character-meta">
+<div class="character-meta">
+<span class="tag tag-gold">2학년</span>
+<span class="tag">제8품 대천사</span>
+</div>
 
-                <span class="tag tag-gold">
-                  2학년
-                </span>
+<h3 class="character-name">
+라구엘
+</h3>
 
-                <span class="tag">
-                  제4품 주품
-                </span>
+<div class="character-name-en">
+RAGUEL
+</div>
 
-              </div>
+<p class="character-description">
+정의와 규율을 중시하는
+엄격한 원칙주의자.
+</p>
 
-              <h3 class="character-name">
-                자드키엘
-              </h3>
+<div class="character-open">
+상세 프로필
+</div>
 
-              <div class="character-name-en">
-                ZADKIEL
-              </div>
+</div>
 
-              <p class="character-description">
-                자비와 용서를 중시하는 중재자.
-                갈등과 분쟁의 조율에 뛰어나다.
-              </p>
+</article>
 
-            </div>
 
-          </article>
 
+<!-- SARIEL -->
 
+<article
+  class="character-card student-card show"
+  data-grade="2"
+  data-character="sariel"
+  tabindex="0"
+  role="button"
+>
 
-          <!-- =================================================
-               CAMAEL
-               ================================================= -->
+<div class="character-placeholder">
+<div class="placeholder-symbol">☽</div>
+</div>
 
-          <article
-            class="character-card student-card show"
-            data-grade="2"
-          >
+<img
+  class="character-image"
+  src="assets/images/characters/sariel.webp"
+  alt="사리엘"
+  loading="lazy"
+>
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ⚔
-              </div>
-            </div>
+<div class="character-overlay"></div>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/camael.webp"
-              alt="카마엘"
-              loading="lazy"
-            >
+<div class="character-content">
 
-            <div class="character-overlay"></div>
+<div class="character-meta">
+<span class="tag tag-gold">2학년</span>
+<span class="tag">제8품 대천사</span>
+</div>
 
-            <div class="character-content">
+<h3 class="character-name">
+사리엘
+</h3>
 
-              <div class="character-meta">
+<div class="character-name-en">
+SARIEL
+</div>
 
-                <span class="tag tag-gold">
-                  2학년
-                </span>
+<p class="character-description">
+달과 금지된 지식을 연구하는
+비밀주의적 학생.
+</p>
 
-                <span class="tag">
-                  제6품 능품
-                </span>
+<div class="character-open">
+상세 프로필
+</div>
 
-              </div>
+</div>
 
-              <h3 class="character-name">
-                카마엘
-              </h3>
+</article>
 
-              <div class="character-name-en">
-                CAMAEL
-              </div>
 
-              <p class="character-description">
-                미카엘을 동경하는 전투과 엘리트.
-                강함과 정의를 무엇보다 중요하게 여긴다.
-              </p>
 
-            </div>
+<!-- SANDALPHON -->
 
-          </article>
+<article
+  class="character-card student-card show"
+  data-grade="3"
+  data-character="sandalphon"
+  tabindex="0"
+  role="button"
+>
 
+<div class="character-placeholder">
+<div class="placeholder-symbol">♜</div>
+</div>
 
+<img
+  class="character-image"
+  src="assets/images/characters/sandalphon.webp"
+  alt="산달폰"
+  loading="lazy"
+>
 
-          <!-- =================================================
-               HANIEL
-               ================================================= -->
+<div class="character-overlay"></div>
 
-          <article
-            class="character-card student-card show"
-            data-grade="2"
-          >
+<div class="character-content">
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ♢
-              </div>
-            </div>
+<div class="character-meta">
+<span class="tag tag-gold">3학년</span>
+<span class="tag">제2품 지천사</span>
+<span class="tag tag-gold">치천사 후보</span>
+</div>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/haniel.webp"
-              alt="하니엘"
-              loading="lazy"
-            >
+<h3 class="character-name">
+산달폰
+</h3>
 
-            <div class="character-overlay"></div>
+<div class="character-name-en">
+SANDALPHON
+</div>
 
-            <div class="character-content">
+<p class="character-description">
+갈색 머리와 날카로운 인상의
+차기 치천사 후보.
+</p>
 
-              <div class="character-meta">
+<div class="character-open">
+상세 프로필
+</div>
 
-                <span class="tag tag-gold">
-                  2학년
-                </span>
+</div>
 
-                <span class="tag">
-                  제7품 권품
-                </span>
+</article>
 
-              </div>
 
-              <h3 class="character-name">
-                하니엘
-              </h3>
 
-              <div class="character-name-en">
-                HANIEL
-              </div>
+<!-- METATRON -->
 
-              <p class="character-description">
-                사교와 외교 능력이 뛰어난 학생.
-                학내 인간관계와 파벌을 정확히 읽는다.
-              </p>
+<article
+  class="character-card student-card show"
+  data-grade="3"
+  data-character="metatron"
+  tabindex="0"
+  role="button"
+>
 
-            </div>
+<div class="character-placeholder">
+<div class="placeholder-symbol">✦</div>
+</div>
 
-          </article>
+<img
+  class="character-image"
+  src="assets/images/characters/metatron.webp"
+  alt="메타트론"
+  loading="lazy"
+>
 
+<div class="character-overlay"></div>
 
+<div class="character-content">
 
-          <!-- =================================================
-               RAGUEL
-               ================================================= -->
+<div class="character-meta">
+<span class="tag tag-gold">3학년</span>
+<span class="tag">제2품 지천사</span>
+<span class="tag tag-gold">치천사 후보</span>
+</div>
 
-          <article
-            class="character-card student-card show"
-            data-grade="2"
-          >
+<h3 class="character-name">
+메타트론
+</h3>
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ⚖
-              </div>
-            </div>
+<div class="character-name-en">
+METATRON
+</div>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/raguel.webp"
-              alt="라구엘"
-              loading="lazy"
-            >
+<p class="character-description">
+분홍 머리의 도발적인 천재.
+산달폰과 함께 최고 승격 후보로 평가된다.
+</p>
 
-            <div class="character-overlay"></div>
+<div class="character-open">
+상세 프로필
+</div>
 
-            <div class="character-content">
+</div>
 
-              <div class="character-meta">
+</article>
 
-                <span class="tag tag-gold">
-                  2학년
-                </span>
 
-                <span class="tag">
-                  제8품 대천사
-                </span>
 
-              </div>
+<!-- AZAZEL -->
 
-              <h3 class="character-name">
-                라구엘
-              </h3>
+<article
+  class="character-card student-card show"
+  data-grade="3"
+  data-character="azazel"
+  tabindex="0"
+  role="button"
+>
 
-              <div class="character-name-en">
-                RAGUEL
-              </div>
+<div class="character-placeholder">
+<div class="placeholder-symbol">⛓</div>
+</div>
 
-              <p class="character-description">
-                정의와 규칙을 무엇보다 중시한다.
-                교장조차 교칙의 예외가 되어서는 안 된다고 믿는다.
-              </p>
+<img
+  class="character-image"
+  src="assets/images/characters/azazel.webp"
+  alt="아자젤"
+  loading="lazy"
+>
 
-            </div>
+<div class="character-overlay"></div>
 
-          </article>
+<div class="character-content">
 
+<div class="character-meta">
+<span class="tag tag-gold">3학년</span>
+<span class="tag tag-danger">감찰 대상</span>
+<span class="tag">제0학과</span>
+</div>
 
+<h3 class="character-name">
+아자젤
+</h3>
 
-          <!-- =================================================
-               SARIEL
-               ================================================= -->
+<div class="character-name-en">
+AZAZEL
+</div>
 
-          <article
-            class="character-card student-card show"
-            data-grade="2"
-          >
+<p class="character-description">
+금지된 지식과 자유의지를 연구하는
+회색 머리의 남성 문제학생.
+</p>
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ☽
-              </div>
-            </div>
+<div class="character-open">
+상세 프로필
+</div>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/sariel.webp"
-              alt="사리엘"
-              loading="lazy"
-            >
+</div>
 
-            <div class="character-overlay"></div>
+</article>
 
-            <div class="character-content">
 
-              <div class="character-meta">
 
-                <span class="tag tag-gold">
-                  2학년
-                </span>
+<!-- BELIAL -->
 
-                <span class="tag">
-                  제8품 대천사
-                </span>
+<article
+  class="character-card student-card show"
+  data-grade="3"
+  data-character="belial"
+  tabindex="0"
+  role="button"
+>
 
-              </div>
+<div class="character-placeholder">
+<div class="placeholder-symbol">◆</div>
+</div>
 
-              <h3 class="character-name">
-                사리엘
-              </h3>
+<img
+  class="character-image"
+  src="assets/images/characters/belial.webp"
+  alt="벨리알"
+  loading="lazy"
+>
 
-              <div class="character-name-en">
-                SARIEL
-              </div>
+<div class="character-overlay"></div>
 
-              <p class="character-description">
-                달과 금지된 지식을 연구하는 학생.
-                규칙보다 진실을 우선하는 비밀주의자.
-              </p>
+<div class="character-content">
 
-            </div>
+<div class="character-meta">
+<span class="tag tag-gold">3학년</span>
+<span class="tag tag-danger">요주의 인물</span>
+</div>
 
-          </article>
+<h3 class="character-name">
+벨리알
+</h3>
 
+<div class="character-name-en">
+BELIAL
+</div>
 
+<p class="character-description">
+사람의 욕망과 결핍을 읽어내는
+검은 머리의 남성 천사.
+</p>
 
-          <!-- =================================================
-               SANDALPHON
-               ================================================= -->
+<div class="character-open">
+상세 프로필
+</div>
 
-          <article
-            class="character-card student-card show"
-            data-grade="3"
-          >
+</div>
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ♜
-              </div>
-            </div>
+</article>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/sandalphon.webp"
-              alt="산달폰"
-              loading="lazy"
-            >
+</div>
 
-            <div class="character-overlay"></div>
+</div>
 
-            <div class="character-content">
+</section>
 
-              <div class="character-meta">
 
-                <span class="tag tag-gold">
-                  3학년
-                </span>
 
-                <span class="tag">
-                  제2품 지천사
-                </span>
+<div class="divider"></div>
 
-                <span class="tag tag-gold">
-                  치천사 후보
-                </span>
 
-              </div>
 
-              <h3 class="character-name">
-                산달폰
-              </h3>
+<!-- ==========================================================
+     DEPARTMENTS
+     ========================================================== -->
 
-              <div class="character-name-en">
-                SANDALPHON
-              </div>
+<section
+  class="section"
+  id="departments"
+>
 
-              <p class="character-description">
-                갈색 머리와 날카로운 인상을 가진
-                최상위권 엘리트.
-                차기 제1품 승격 후보로 평가된다.
-              </p>
+<div class="container">
 
-            </div>
+<div class="section-title-wrap">
 
-          </article>
+<div class="eyebrow">
+DEPARTMENTS
+</div>
 
+<h2 class="section-title">
+전공 과목
+</h2>
 
+</div>
 
-          <!-- =================================================
-               METATRON
-               ================================================= -->
 
-          <article
-            class="character-card student-card show"
-            data-grade="3"
-          >
+<div class="department-grid">
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ✦
-              </div>
-            </div>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/metatron.webp"
-              alt="메타트론"
-              loading="lazy"
-            >
+<article class="department-card">
 
-            <div class="character-overlay"></div>
+<h3>성전학과</h3>
 
-            <div class="character-content">
+<div class="department-en">
+SACRED COMBAT
+</div>
 
-              <div class="character-meta">
+<p class="department-description">
+악마와 타락천사에 맞서는
+전문 전투 천사를 양성한다.
+</p>
 
-                <span class="tag tag-gold">
-                  3학년
-                </span>
+<div class="course-list">
+<span class="course">천검술</span>
+<span class="course">성창술</span>
+<span class="course">비행전</span>
+<span class="course">악마학</span>
+<span class="course">전투결계</span>
+</div>
 
-                <span class="tag">
-                  제2품 지천사
-                </span>
+</article>
 
-                <span class="tag tag-gold">
-                  치천사 후보
-                </span>
 
-              </div>
+<article class="department-card">
 
-              <h3 class="character-name">
-                메타트론
-              </h3>
+<h3>신성술학과</h3>
 
-              <div class="character-name-en">
-                METATRON
-              </div>
+<div class="department-en">
+DIVINE ARTS
+</div>
 
-              <p class="character-description">
-                분홍 머리의 천재형 엘리트.
-                장난스럽고 도발적인 성격이지만
-                실력만큼은 누구도 무시할 수 없다.
-              </p>
+<p class="department-description">
+치유, 축복, 기적과
+성역 구축을 연구한다.
+</p>
 
-            </div>
+<div class="course-list">
+<span class="course">치유성법</span>
+<span class="course">축복학</span>
+<span class="course">저주 해제</span>
+<span class="course">기적 발생론</span>
+</div>
 
-          </article>
+</article>
 
 
+<article class="department-card">
 
-          <!-- =================================================
-               AZAZEL
-               ================================================= -->
+<h3>천문·예언학과</h3>
 
-          <article
-            class="character-card student-card show"
-            data-grade="3"
-          >
+<div class="department-en">
+CELESTIAL OBSERVATION
+</div>
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ⛓
-              </div>
-            </div>
+<p class="department-description">
+운명과 기억,
+미래 가능성과 천계의 비밀을 탐구한다.
+</p>
 
-            <img
-              class="character-image"
-              src="assets/images/characters/azazel.webp"
-              alt="아자젤"
-              loading="lazy"
-            >
+<div class="course-list">
+<span class="course">예언학</span>
+<span class="course">운명학</span>
+<span class="course">기억 열람</span>
+<span class="course">차원관측</span>
+</div>
 
-            <div class="character-overlay"></div>
+</article>
 
-            <div class="character-content">
 
-              <div class="character-meta">
+<article class="department-card">
 
-                <span class="tag tag-gold">
-                  3학년
-                </span>
+<h3>천계행정학과</h3>
 
-                <span class="tag tag-danger">
-                  감찰 대상
-                </span>
+<div class="department-en">
+HEAVENLY ADMINISTRATION
+</div>
 
-                <span class="tag">
-                  제0학과
-                </span>
+<p class="department-description">
+천계법, 조직관리, 지휘,
+외교와 분쟁조정을 교육한다.
+</p>
 
-              </div>
+<div class="course-list">
+<span class="course">천계법</span>
+<span class="course">조직관리</span>
+<span class="course">천계외교</span>
+<span class="course">분쟁조정</span>
+</div>
 
-              <h3 class="character-name">
-                아자젤
-              </h3>
+</article>
 
-              <div class="character-name-en">
-                AZAZEL
-              </div>
 
-              <p class="character-description">
-                회색 머리의 반항적인 남성 천사.
-                천계의 통제와 교육 체계 자체에 의문을 품는다.
-              </p>
+<article class="department-card">
 
-            </div>
+<h3>계시·전령학과</h3>
 
-          </article>
+<div class="department-en">
+REVELATION & MESSENGER
+</div>
 
+<p class="department-description">
+꿈과 계시, 신탁과
+천계의 메시지를 전달하는 천사를 양성한다.
+</p>
 
+<div class="course-list">
+<span class="course">계시학</span>
+<span class="course">꿈 개입</span>
+<span class="course">기억전달</span>
+<span class="course">천계언어학</span>
+</div>
 
-          <!-- =================================================
-               BELIAL
-               ================================================= -->
+</article>
 
-          <article
-            class="character-card student-card show"
-            data-grade="3"
-          >
 
-            <div class="character-placeholder">
-              <div class="placeholder-symbol">
-                ◆
-              </div>
-            </div>
+<article class="department-card">
 
-            <img
-              class="character-image"
-              src="assets/images/characters/belial.webp"
-              alt="벨리알"
-              loading="lazy"
-            >
+<h3>성물공학과</h3>
 
-            <div class="character-overlay"></div>
+<div class="department-en">
+SACRED RELIC ENGINEERING
+</div>
 
-            <div class="character-content">
+<p class="department-description">
+성검과 성유물,
+결계장치와 성력회로를 제작한다.
+</p>
 
-              <div class="character-meta">
+<div class="course-list">
+<span class="course">성물제작</span>
+<span class="course">성검제련</span>
+<span class="course">후광공학</span>
+<span class="course">봉인술</span>
+</div>
 
-                <span class="tag tag-gold">
-                  3학년
-                </span>
+</article>
 
-                <span class="tag tag-danger">
-                  요주의 인물
-                </span>
 
-              </div>
+<article class="department-card department-secret">
 
-              <h3 class="character-name">
-                벨리알
-              </h3>
+<h3>제0학과</h3>
 
-              <div class="character-name-en">
-                BELIAL
-              </div>
+<div class="department-en">
+FORBIDDEN THEOLOGY
+</div>
 
-              <p class="character-description">
-                검은 머리의 매혹적인 남성 천사.
-                타인의 욕망과 결핍을 읽고
-                선택을 교묘하게 흔든다.
-              </p>
+<p class="department-description">
+공식적으로 존재하지 않는 연구과.
+타락, 자유의지, 천사의 죽음과
+금지된 성물을 다룬다.
+</p>
 
-            </div>
+<div class="course-list">
+<span class="course">타락론</span>
+<span class="course">악마 신학</span>
+<span class="course">자유의지론</span>
+<span class="course">금지 성물학</span>
+</div>
 
-          </article>
+</article>
 
+</div>
 
-        </div>
+</div>
 
-      </div>
+</section>
 
-    </section>
 
 
+<div class="divider"></div>
 
-    <div class="divider"></div>
 
 
+<!-- ==========================================================
+     EVENTS
+     ========================================================== -->
 
-    <!-- =======================================================
-         DEPARTMENTS
-         ======================================================= -->
+<section
+  class="section"
+  id="events"
+>
 
-    <section
-      class="section"
-      id="departments"
-    >
+<div class="container">
 
-      <div class="container">
+<div class="section-title-wrap">
 
-        <div class="section-title-wrap">
+<div class="eyebrow">
+ANNUAL SCHEDULE
+</div>
 
-          <div class="eyebrow">
-            DEPARTMENTS
-          </div>
+<h2 class="section-title">
+분기별 행사
+</h2>
 
-          <h2 class="section-title">
-            전공 과목
-          </h2>
+</div>
 
-          <p class="section-description">
-            1학년 공통교육 이후
-            학생들은 자신의 적성과 잠재 품계에 따라
-            전문 전공을 선택한다.
-          </p>
 
-        </div>
+<div class="timeline">
 
 
-        <div class="department-grid">
+<article class="event-card">
 
+<div class="event-season">
+FIRST QUARTER
+</div>
 
-          <article class="department-card">
+<h3 class="event-title">
+개익절 · Opening of Wings
+</h3>
 
-            <h3>
-              성전학과
-            </h3>
+<p class="event-copy">
+입학과 새로운 관계가 시작되는 첫 번째 분기.
+</p>
 
-            <div class="department-en">
-              SACRED COMBAT
-            </div>
+<div class="event-sub">
 
-            <p class="department-description">
-              악마와 타락천사에 맞서는
-              전문 전투 천사를 양성한다.
-            </p>
+<div class="event-mini">
+<strong>날개의식</strong>
+<span>신입생의 날개와 후광을 공개한다.</span>
+</div>
 
-            <div class="course-list">
-              <span class="course">천검술</span>
-              <span class="course">성창술</span>
-              <span class="course">비행전</span>
-              <span class="course">악마학</span>
-              <span class="course">전투결계</span>
-            </div>
+<div class="event-mini">
+<strong>첫 번째 비행시험</strong>
+<span>천공섬 사이를 통과하는 기초 실전시험.</span>
+</div>
 
-          </article>
+<div class="event-mini">
+<strong>사제 선택식</strong>
+<span>학생과 담당 교관의 지도 관계를 결정한다.</span>
+</div>
 
+</div>
 
+</article>
 
-          <article class="department-card">
 
-            <h3>
-              신성술학과
-            </h3>
 
-            <div class="department-en">
-              DIVINE ARTS
-            </div>
+<article class="event-card">
 
-            <p class="department-description">
-              치유, 축복, 기적과
-              성역 구축을 연구한다.
-            </p>
+<div class="event-season">
+SECOND QUARTER
+</div>
 
-            <div class="course-list">
-              <span class="course">치유성법</span>
-              <span class="course">축복학</span>
-              <span class="course">저주 해제</span>
-              <span class="course">기적 발생론</span>
-            </div>
+<h3 class="event-title">
+성전제 · Festival of Valor
+</h3>
 
-          </article>
+<p class="event-copy">
+학생들의 힘과 전략을 겨루는
+아카데미 최대 규모의 경쟁 축제.
+</p>
 
+<div class="event-sub">
 
+<div class="event-mini">
+<strong>천공대련제</strong>
+<span>전 학년이 참가하는 개인전 토너먼트.</span>
+</div>
 
-          <article class="department-card">
+<div class="event-mini">
+<strong>성물 쟁탈전</strong>
+<span>팀으로 던전에 진입해 성물을 확보한다.</span>
+</div>
 
-            <h3>
-              천문·예언학과
-            </h3>
+<div class="event-mini">
+<strong>천사무도회</strong>
+<span>성전제 마지막 밤에 열리는 공식 무도회.</span>
+</div>
 
-            <div class="department-en">
-              CELESTIAL OBSERVATION
-            </div>
+</div>
 
-            <p class="department-description">
-              운명, 기억, 미래 가능성과
-              차원의 흐름을 연구한다.
-            </p>
+</article>
 
-            <div class="course-list">
-              <span class="course">예언학</span>
-              <span class="course">운명학</span>
-              <span class="course">기억 열람</span>
-              <span class="course">차원관측</span>
-            </div>
 
-          </article>
 
+<article class="event-card">
 
+<div class="event-season">
+THIRD QUARTER
+</div>
 
-          <article class="department-card">
+<h3 class="event-title">
+인계실습기 · Mortal Realm Practicum
+</h3>
 
-            <h3>
-              천계행정학과
-            </h3>
+<p class="event-copy">
+학생들이 직접 인간계에 내려가
+실제 임무를 경험한다.
+</p>
 
-            <div class="department-en">
-              HEAVENLY ADMINISTRATION
-            </div>
+<div class="event-sub">
 
-            <p class="department-description">
-              천계법, 지휘, 조직관리와
-              외교를 교육한다.
-            </p>
+<div class="event-mini">
+<strong>인간계 파견</strong>
+<span>2~4인의 소규모 팀으로 현장에 배치된다.</span>
+</div>
 
-            <div class="course-list">
-              <span class="course">천계법</span>
-              <span class="course">조직관리</span>
-              <span class="course">천계외교</span>
-              <span class="course">분쟁조정</span>
-            </div>
+<div class="event-mini">
+<strong>72시간 수호시험</strong>
+<span>특정 인간의 자유의지를 존중하며 보호한다.</span>
+</div>
 
-          </article>
+<div class="event-mini">
+<strong>인간 학교 위장실습</strong>
+<span>정체를 감춘 채 인간 사회 속에서 임무를 수행한다.</span>
+</div>
 
+</div>
 
+</article>
 
-          <article class="department-card">
 
-            <h3>
-              계시·전령학과
-            </h3>
 
-            <div class="department-en">
-              REVELATION & MESSENGER
-            </div>
+<article class="event-card">
 
-            <p class="department-description">
-              꿈, 신탁, 계시와
-              천계의 메시지를 전달한다.
-            </p>
+<div class="event-season">
+FOURTH QUARTER
+</div>
 
-            <div class="course-list">
-              <span class="course">계시학</span>
-              <span class="course">꿈 개입</span>
-              <span class="course">기억전달</span>
-              <span class="course">천계언어학</span>
-            </div>
+<h3 class="event-title">
+천칭제 · Judgment Season
+</h3>
 
-          </article>
+<p class="event-copy">
+한 해의 성과와 신성도,
+타락 위험을 평가하는 최종 분기.
+</p>
 
+<div class="event-sub">
 
+<div class="event-mini">
+<strong>천칭의 심판</strong>
+<span>성적과 실적, 공명과 신성도를 종합 평가한다.</span>
+</div>
 
-          <article class="department-card">
+<div class="event-mini">
+<strong>품계시험</strong>
+<span>상위 품계 승격 자격을 증명한다.</span>
+</div>
 
-            <h3>
-              성물공학과
-            </h3>
+<div class="event-mini">
+<strong>치천사 심사</strong>
+<span>힘이 아니라 판단과 책임을 검증하는 최고위 시험.</span>
+</div>
 
-            <div class="department-en">
-              SACRED RELIC ENGINEERING
-            </div>
+</div>
 
-            <p class="department-description">
-              성검, 성유물,
-              결계장치와 성력회로를 제작한다.
-            </p>
+</article>
 
-            <div class="course-list">
-              <span class="course">성물제작</span>
-              <span class="course">성검제련</span>
-              <span class="course">후광공학</span>
-              <span class="course">봉인술</span>
-            </div>
+</div>
 
-          </article>
+</div>
 
+</section>
 
+</main>
 
-          <article class="department-card department-secret">
 
-            <h3>
-              제0학과
-            </h3>
 
-            <div class="department-en">
-              FORBIDDEN THEOLOGY
-            </div>
+<!-- ==========================================================
+     FOOTER
+     ========================================================== -->
 
-            <p class="department-description">
-              공식적으로 존재하지 않는 비밀 연구과.
-              타락과 자유의지, 천사의 죽음과
-              신성 오염을 연구한다.
-            </p>
+<footer>
 
-            <div class="course-list">
-              <span class="course">타락론</span>
-              <span class="course">악마 신학</span>
-              <span class="course">자유의지론</span>
-              <span class="course">금지 성물학</span>
-            </div>
+<div class="container">
 
-          </article>
+<div class="footer-symbol">
+✦
+</div>
 
+<div class="footer-title">
+SERAPH ACADEMY
+</div>
 
-        </div>
+<div class="footer-copy">
+Celestial Archive · Class-0 access requires authorization.
+</div>
 
-      </div>
+</div>
 
-    </section>
+</footer>
 
 
 
-    <div class="divider"></div>
+<!-- ==========================================================
+     CHARACTER PROFILE PAGE
+     ========================================================== -->
 
+<section
+  class="profile-page"
+  id="profilePage"
+  aria-hidden="true"
+>
 
+<div class="profile-backdrop"></div>
 
-    <!-- =======================================================
-         EVENTS
-         ======================================================= -->
 
-    <section
-      class="section"
-      id="events"
-    >
+<div class="profile-topbar">
 
-      <div class="container">
+<div class="profile-top-title">
+SERAPH ACADEMY · PERSONNEL ARCHIVE
+</div>
 
-        <div class="section-title-wrap">
+<button
+  class="profile-close"
+  id="profileClose"
+  aria-label="프로필 닫기"
+>
+×
+</button>
 
-          <div class="eyebrow">
-            ANNUAL SCHEDULE
-          </div>
+</div>
 
-          <h2 class="section-title">
-            분기별 행사
-          </h2>
 
-          <p class="section-description">
-            세라프 아카데미의 한 해는
-            입학, 경쟁, 인간계 실습,
-            그리고 최종 심판으로 이어진다.
-          </p>
+<div class="profile-container">
 
-        </div>
+<div class="profile-hero">
 
 
-        <div class="timeline">
+<div class="profile-image-wrap">
 
+<img
+  class="profile-image"
+  id="profileImage"
+  alt=""
+>
 
-          <article class="event-card">
+<div class="profile-image-gradient"></div>
 
-            <div class="event-season">
-              FIRST QUARTER
-            </div>
+<div
+  class="profile-image-label"
+  id="profileImageLabel"
+></div>
 
-            <h3 class="event-title">
-              개익절 · Opening of Wings
-            </h3>
+</div>
 
-            <p class="event-copy">
-              신입생이 처음 자신의 날개와 후광을
-              공식적으로 공개하는 입학 시즌.
-            </p>
 
-            <div class="event-sub">
+<div class="profile-main">
 
-              <div class="event-mini">
-                <strong>
-                  날개의식
-                </strong>
+<div
+  class="profile-status"
+  id="profileStatus"
+></div>
 
-                <span>
-                  학생의 잠재 성향과
-                  품계 적성을 관찰한다.
-                </span>
-              </div>
+<h2
+  class="profile-name"
+  id="profileName"
+></h2>
 
+<div
+  class="profile-name-en"
+  id="profileNameEn"
+></div>
 
-              <div class="event-mini">
-                <strong>
-                  첫 번째 비행시험
-                </strong>
+<div
+  class="profile-quote"
+  id="profileQuote"
+></div>
 
-                <span>
-                  천공섬 사이를 통과하는
-                  신입생 비행시험.
-                </span>
-              </div>
+<p
+  class="profile-summary"
+  id="profileSummary"
+></p>
 
 
-              <div class="event-mini">
-                <strong>
-                  사제 선택식
-                </strong>
+<div
+  class="profile-info-grid"
+  id="profileInfo"
+></div>
 
-                <span>
-                  교관과 학생 사이의
-                  지도 관계가 결정된다.
-                </span>
-              </div>
 
-            </div>
+<div class="profile-section">
 
-          </article>
+<h3 class="profile-section-title">
+인물 기록
+</h3>
 
+<p id="profileStory"></p>
 
+</div>
 
-          <article class="event-card">
 
-            <div class="event-season">
-              SECOND QUARTER
-            </div>
+<div class="profile-section">
 
-            <h3 class="event-title">
-              성전제 · Festival of Valor
-            </h3>
+<h3 class="profile-section-title">
+성향 및 특징
+</h3>
 
-            <p class="event-copy">
-              전투, 전략과 팀워크를 겨루는
-              아카데미 최대 규모의 경쟁 행사.
-            </p>
+<div
+  class="profile-keywords"
+  id="profileKeywords"
+></div>
 
-            <div class="event-sub">
+</div>
 
-              <div class="event-mini">
-                <strong>
-                  천공대련제
-                </strong>
 
-                <span>
-                  전 학년이 참가하는
-                  개인전 토너먼트.
-                </span>
-              </div>
+<div class="profile-section">
 
+<h3 class="profile-section-title">
+아카데미 평가
+</h3>
 
-              <div class="event-mini">
-                <strong>
-                  성물 쟁탈전
-                </strong>
+<p id="profileEvaluation"></p>
 
-                <span>
-                  팀 단위로 던전에 진입해
-                  목표 성물을 확보한다.
-                </span>
-              </div>
+</div>
 
+</div>
 
-              <div class="event-mini">
-                <strong>
-                  천사무도회
-                </strong>
+</div>
 
-                <span>
-                  성전제 마지막 밤에
-                  열리는 공식 무도회.
-                </span>
-              </div>
+</div>
 
-            </div>
+</section>
 
-          </article>
 
 
+<!-- ==========================================================
+     BGM
+     ========================================================== -->
 
-          <article class="event-card">
+<aside
+  class="music-player"
+  id="musicPlayer"
+>
 
-            <div class="event-season">
-              THIRD QUARTER
-            </div>
+<div class="music-header">
 
-            <h3 class="event-title">
-              인계실습기 · Mortal Realm Practicum
-            </h3>
+<div>
 
-            <p class="event-copy">
-              학생들이 인간계에 직접 내려가
-              실제 임무를 수행한다.
-            </p>
+<div class="music-title">
+♪ Academy BGM
+</div>
 
-            <div class="event-sub">
+<div
+  class="music-track"
+  id="trackName"
+>
+assets/audio/bgm.mp3
+</div>
 
-              <div class="event-mini">
-                <strong>
-                  인간계 파견
-                </strong>
+</div>
 
-                <span>
-                  소수 팀으로 실제
-                  현장 임무에 배치된다.
-                </span>
-              </div>
 
+<button
+  class="music-collapse"
+  id="musicCollapse"
+>
+−
+</button>
 
-              <div class="event-mini">
-                <strong>
-                  72시간 수호시험
-                </strong>
+</div>
 
-                <span>
-                  특정 인간을
-                  72시간 동안 보호한다.
-                </span>
-              </div>
 
+<div class="music-body">
 
-              <div class="event-mini">
-                <strong>
-                  인간 학교 위장실습
-                </strong>
+<audio
+  id="bgm"
+  loop
+  preload="metadata"
+>
 
-                <span>
-                  천사라는 정체를 숨기고
-                  인간 사회를 경험한다.
-                </span>
-              </div>
+<source
+  src="assets/audio/bgm.mp3"
+  type="audio/mpeg"
+>
 
-            </div>
+</audio>
 
-          </article>
 
+<div class="music-controls">
 
+<button
+  class="music-button"
+  id="playButton"
+>
+PLAY
+</button>
 
-          <article class="event-card">
+<input
+  class="volume"
+  id="volumeControl"
+  type="range"
+  min="0"
+  max="1"
+  step="0.01"
+  value="0.35"
+>
 
-            <div class="event-season">
-              FOURTH QUARTER
-            </div>
+</div>
 
-            <h3 class="event-title">
-              천칭제 · Judgment Season
-            </h3>
+</div>
 
-            <p class="event-copy">
-              모든 학생의 한 해를 평가하고
-              승급과 감찰 여부를 결정한다.
-            </p>
+</aside>
 
-            <div class="event-sub">
 
-              <div class="event-mini">
-                <strong>
-                  천칭의 심판
-                </strong>
 
-                <span>
-                  성적, 실적, 공명,
-                  신성도를 종합 평가한다.
-                </span>
-              </div>
+<script>
+/* ==========================================================
+   CHARACTER DATABASE
+   상세 프로필 내용은 여기만 수정하면 됨
+   ========================================================== */
 
+const characters = {
 
-              <div class="event-mini">
-                <strong>
-                  품계시험
-                </strong>
+  lucifer: {
+    name: "루시펠",
+    en: "LUCIFER",
+    image: "assets/images/characters/lucifer.webp",
+    status: ["교장", "제1품 치천사"],
+    gender: "남성",
+    grade: "교직원",
+    rank: "제1품 치천사",
+    department: "아카데미 총괄",
+    hair: "백발",
+    specialty: "심판 · 통솔 · 고위 신성술",
+    quote: "“천사는 명령에 복종하기 위해 태어난 존재가 아니다. 선택의 무게를 견디기 위해 태어난 존재지.”",
+    summary:
+      "세라프 아카데미의 교장이자 천계 최상위 계급인 치천사. 부드럽고 여유로운 태도를 유지하지만, 그의 판단 하나가 학생의 미래와 품계를 바꿀 정도의 권한을 지니고 있다.",
+    story:
+      "학생을 억압적으로 통제하기보다는 스스로 선택하게 만드는 교육 방식을 선호한다. 때문에 보수적인 천계 인사들과 마찰을 빚기도 한다. 아자젤이 주장하는 자유의지론에 대해서도 단순한 반역으로 치부하지 않으며, 그가 어디까지 갈 것인지 조용히 지켜보고 있다.",
+    keywords: [
+      "절대적 권위",
+      "여유",
+      "관찰자",
+      "백발",
+      "치천사",
+      "교장",
+      "위험한 친절"
+    ],
+    evaluation:
+      "공식적인 능력 평가가 의미를 잃은 최상위 존재. 미카엘과 함께 아카데미 내에서 학생이 직접 대적할 수 없는 기준점으로 취급된다."
+  },
 
-                <span>
-                  학생이 상위 품계로
-                  올라갈 자격을 증명한다.
-                </span>
-              </div>
 
+  michael: {
+    name: "미카엘",
+    en: "MICHAEL",
+    image: "assets/images/characters/michael.webp",
+    status: ["전투 교관", "제1품 치천사", "4대천사"],
+    gender: "남성",
+    grade: "교직원",
+    rank: "제1품 치천사",
+    department: "성전학과",
+    hair: "금발",
+    specialty: "검술 · 성전 · 전술 지휘",
+    quote: "“전장에서 망설임은 자비가 아니다. 함께 싸우는 자를 위험하게 만드는 죄다.”",
+    summary:
+      "금발의 남성 치천사이자 4대천사 중 하나. 아카데미 성전학과를 총괄하며 수많은 실전 경험을 가진 천계 최강급 전투천사다.",
+    story:
+      "학생들에게 극도로 엄격하지만 이유 없는 처벌은 하지 않는다. 모든 훈련은 학생이 실제 전장에서 살아남도록 하기 위한 것이다. 특히 카마엘이 자신을 지나치게 동경하며 힘에 집착하는 모습을 우려하고 있다.",
+    keywords: [
+      "금발",
+      "성기사",
+      "검술",
+      "엄격함",
+      "규율",
+      "전투 교관",
+      "치천사"
+    ],
+    evaluation:
+      "전투능력, 지휘력, 신성도 모두 최고 등급. 아카데미 천공대련제 우승자에게 그와 직접 대련할 자격이 주어진다."
+  },
 
-              <div class="event-mini">
-                <strong>
-                  치천사 심사
-                </strong>
 
-                <span>
-                  힘보다 판단과 책임을
-                  검증하는 최고위 시험.
-                </span>
-              </div>
+  gabriel: {
+    name: "가브리엘",
+    en: "GABRIEL",
+    image: "assets/images/characters/gabriel.webp",
+    status: ["교관", "제2품 지천사", "4대천사"],
+    gender: "여성",
+    grade: "교직원",
+    rank: "제2품 지천사",
+    department: "계시·전령학과",
+    hair: "청색 계열",
+    specialty: "계시 · 전달 · 수계 신성술",
+    quote: "“말은 단순한 소리가 아니랍니다. 때로 한 문장이 한 사람의 운명을 바꾸기도 하니까요.”",
+    summary:
+      "물의 속성을 상징하는 4대천사. 계시와 전령, 천계와 인간계 사이의 정보 전달을 총괄한다.",
+    story:
+      "온화하고 친절하지만 정보의 정확성에 관해서는 놀라울 만큼 엄격하다. 학생들에게 무엇을 말할 것인가보다 언제, 어떤 방식으로 전달할 것인가를 더 중요하게 가르친다.",
+    keywords: [
+      "물",
+      "계시",
+      "전령",
+      "청아함",
+      "우아함",
+      "지천사"
+    ],
+    evaluation:
+      "정보전과 신탁 해석 분야에서 대체 불가능한 전문가. 인간계 파견 임무를 준비하는 학생들이 가장 자주 찾는 교관 중 하나."
+  },
 
-            </div>
 
-          </article>
+  raphael: {
+    name: "라파엘",
+    en: "RAPHAEL",
+    image: "assets/images/characters/raphael.webp",
+    status: ["교관", "제2품 지천사", "4대천사"],
+    gender: "여성",
+    grade: "교직원",
+    rank: "제2품 지천사",
+    department: "신성술학과",
+    hair: "녹색",
+    specialty: "치유 · 생명 · 축복",
+    quote: "“상처를 낫게 하는 것보다 어려운 건, 다시 일어설 이유를 되찾게 하는 일이에요.”",
+    summary:
+      "치유와 생명을 담당하는 여성 지천사. 신성술학과와 아카데미의 성흔의료원을 관리한다.",
+    story:
+      "학생들에게 가장 친근한 교관으로 알려져 있지만 자신의 환자를 해친 자에게는 전혀 다른 모습을 보인다. 바라키엘의 축복 능력을 높게 평가하고 있다.",
+    keywords: [
+      "치유",
+      "생명",
+      "녹색",
+      "보호자",
+      "신성술",
+      "지천사"
+    ],
+    evaluation:
+      "생명계 신성술의 최고 권위자. 전투력 자체보다 회복, 방어, 상태복원 능력에서 압도적인 평가를 받는다."
+  },
 
 
-        </div>
+  uriel: {
+    name: "우리엘",
+    en: "URIEL",
+    image: "assets/images/characters/uriel.webp",
+    status: ["교관", "제2품 지천사", "4대천사"],
+    gender: "여성",
+    grade: "교직원",
+    rank: "제2품 지천사",
+    department: "천문·예언학과",
+    hair: "적금색",
+    specialty: "예언 · 지식 · 성화",
+    quote: "“미래를 안다는 것은 정답을 아는 것이 아니라, 선택의 대가를 먼저 보는 것이다.”",
+    summary:
+      "불과 빛, 지혜를 상징하는 여성 지천사. 천문·예언학과의 고위 이론과정을 담당한다.",
+    story:
+      "냉철하고 분석적인 학자형 교관. 라지엘과 사리엘처럼 위험한 지식에 가까이 다가가는 학생들을 특별히 주시하고 있다.",
+    keywords: [
+      "불",
+      "빛",
+      "예언",
+      "지혜",
+      "엄정함",
+      "지천사"
+    ],
+    evaluation:
+      "천계 법칙과 미래 가능성 분석 분야의 최고 전문가. 시험 난도가 지나치게 높다는 학생들의 불만이 끊이지 않는다."
+  },
 
-      </div>
 
-    </section>
+  lailah: {
+    name: "라일라",
+    en: "LAILAH",
+    image: "assets/images/characters/lailah.webp",
+    status: ["1학년", "제9품 천사"],
+    gender: "여성",
+    grade: "1학년",
+    rank: "제9품 천사",
+    department: "계시·전령학과",
+    hair: "남보라색",
+    specialty: "인간 공명 · 꿈 · 영혼 감응",
+    quote: "“아직 잘 모르겠지만… 그래도 누군가를 지켜주는 천사가 되고 싶어요.”",
+    summary:
+      "밤과 탄생을 상징하는 1학년 신입생. 고위 천사들 사이에서는 평범해 보이지만 인간의 감정과 영혼에 공명하는 능력이 매우 뛰어나다.",
+    story:
+      "아카데미에 대해 아는 것이 적어 세계관의 여러 인물을 자연스럽게 만나는 위치에 있다. 아직 전투에는 익숙하지 않지만 인간계 실습에서 예상 밖의 잠재력을 보일 가능성이 높다.",
+    keywords: [
+      "신입생",
+      "순수함",
+      "밤",
+      "꿈",
+      "성장형",
+      "인간 친화"
+    ],
+    evaluation:
+      "성력과 전투 성적은 평범하지만 공명 수치가 매우 높다. 일부 교관은 장기적으로 희귀한 적성을 발현할 가능성이 있다고 보고 있다."
+  },
 
 
-  </main>
+  barachiel: {
+    name: "바라키엘",
+    en: "BARACHIEL",
+    image: "assets/images/characters/barachiel.webp",
+    status: ["1학년", "제5품 역천사"],
+    gender: "여성",
+    grade: "1학년",
+    rank: "제5품 역천사",
+    department: "신성술학과",
+    hair: "복숭아빛 분홍",
+    specialty: "축복 · 행운 · 확률 개입",
+    quote: "“괜찮아! 오늘은 분명 좋은 일이 생길 거야. 내가 그렇게 만들면 되잖아?”",
+    summary:
+      "행운과 축복을 다루는 밝고 활기찬 천사. 주변의 가능성을 미세하게 긍정적인 방향으로 변화시키는 특이 능력을 가졌다.",
+    story:
+      "누구와도 쉽게 친해지지만 자신의 축복 때문에 상대가 자신에게 호의를 보이는 것은 아닌지 가끔 고민한다.",
+    keywords: [
+      "축복",
+      "행운",
+      "분위기메이커",
+      "밝음",
+      "역천사"
+    ],
+    evaluation:
+      "직접적인 전투 능력은 낮지만 단체전과 인간계 실습에서 매우 높은 임무 성공률을 보인다."
+  },
 
 
+  raziel: {
+    name: "라지엘",
+    en: "RAZIEL",
+    image: "assets/images/characters/raziel.webp",
+    status: ["2학년", "제3품 좌천사"],
+    gender: "여성",
+    grade: "2학년",
+    rank: "제3품 좌천사",
+    department: "천문·예언학과",
+    hair: "은청색",
+    specialty: "비밀지식 · 법칙해석 · 기억열람",
+    quote: "“비밀이란 숨겨져 있기 때문에 가치 있는 게 아니야. 알아선 안 될 이유가 있기 때문에 가치 있는 거지.”",
+    summary:
+      "천계의 비밀과 세계의 법칙을 연구하는 여성 좌천사. 차분하고 신비로운 분위기의 소유자로, 이해할 수 없는 정보까지 기록하려는 집착을 보인다.",
+    story:
+      "무한서고와 천계의 고대 기록에 누구보다 자주 접근한다. 사리엘과 연구 분야가 일부 겹치지만, 사리엘이 금기를 넘어서는 쪽이라면 라지엘은 금기의 구조 자체를 이해하려 한다.",
+    keywords: [
+      "비밀",
+      "지식",
+      "좌천사",
+      "기억",
+      "신비주의",
+      "관측"
+    ],
+    evaluation:
+      "지성 평가 최상위권. 일부 교관은 라지엘의 지식욕이 언젠가 제0학과와 연결될 가능성을 우려한다."
+  },
 
-  <!-- =========================================================
-       FOOTER
-       ========================================================= -->
 
-  <footer>
+  zadkiel: {
+    name: "자드키엘",
+    en: "ZADKIEL",
+    image: "assets/images/characters/zadkiel.webp",
+    status: ["2학년", "제4품 주천사"],
+    gender: "여성",
+    grade: "2학년",
+    rank: "제4품 주천사",
+    department: "천계행정학과",
+    hair: "연보라색",
+    specialty: "중재 · 통솔 · 자비",
+    quote: "“잘못을 용서하는 것과 잘못을 없던 일로 만드는 것은 다른 일이에요.”",
+    summary:
+      "자비와 용서를 중시하는 주천사. 부드러운 성품과 뛰어난 중재 능력으로 학내 갈등을 해결하는 경우가 많다.",
+    story:
+      "아자젤과 같은 반동적인 학생에게도 대화를 먼저 시도한다. 때문에 일부 학생은 지나치게 이상주의적이라고 평가한다.",
+    keywords: [
+      "자비",
+      "용서",
+      "중재",
+      "온화함",
+      "주천사"
+    ],
+    evaluation:
+      "통솔 및 분쟁 해결 능력에서 높은 점수를 받는다. 장래 천계 행정기관의 고위직 후보로 평가된다."
+  },
 
-    <div class="container">
 
-      <div class="footer-symbol">
-        ✦
-      </div>
+  camael: {
+    name: "카마엘",
+    en: "CAMAEL",
+    image: "assets/images/characters/camael.webp",
+    status: ["2학년", "제6품 능천사"],
+    gender: "여성",
+    grade: "2학년",
+    rank: "제6품 능천사",
+    department: "성전학과",
+    hair: "진홍색",
+    specialty: "근접전 · 성검술 · 돌파",
+    quote: "“힘이 없다면 정의를 지킬 수도 없어.”",
+    summary:
+      "진홍색 머리의 전투 특화 천사. 미카엘을 동경하며 성전학과 수석 자리를 노리고 있다.",
+    story:
+      "정의감이 강하지만 악에게 자비를 베푸는 것을 이해하지 못한다. 그 완고함이 장점인 동시에 벨리알이 파고들 수 있는 약점이기도 하다.",
+    keywords: [
+      "전투광",
+      "진홍색",
+      "능천사",
+      "미카엘 동경",
+      "강함",
+      "라이벌"
+    ],
+    evaluation:
+      "순수 전투 성적은 동학년 최상위. 단, 감정적인 상황에서 판단력이 흔들리는 문제가 기록되어 있다."
+  },
 
-      <div class="footer-title">
-        SERAPH ACADEMY
-      </div>
 
-      <p class="footer-copy">
-        Celestial Archive · Unauthorized access to Class-0 records is prohibited.
-      </p>
+  haniel: {
+    name: "하니엘",
+    en: "HANIEL",
+    image: "assets/images/characters/haniel.webp",
+    status: ["2학년", "제7품 권천사"],
+    gender: "여성",
+    grade: "2학년",
+    rank: "제7품 권천사",
+    department: "천계행정학과",
+    hair: "로즈골드",
+    specialty: "외교 · 관계조정 · 정보망",
+    quote: "“사람 사이의 거리는 숫자로 잴 수 없어. 하지만 어디서 틀어졌는지는 알 수 있지.”",
+    summary:
+      "우아하고 사교성이 뛰어난 권천사. 학내의 인간관계와 파벌, 감정적 흐름을 빠르게 파악한다.",
+    story:
+      "학생회와 각 학과 사이의 갈등을 조정하는 역할을 자연스럽게 맡고 있다. 벨리알과 마찬가지로 사람의 마음을 잘 읽지만 그 능력을 사용하는 방향은 정반대다.",
+    keywords: [
+      "외교",
+      "사교성",
+      "우아함",
+      "정보통",
+      "권천사"
+    ],
+    evaluation:
+      "사회적 영향력과 통솔 평가가 매우 높다. 직접적인 전투보다 집단 임무에서 진가를 발휘한다."
+  },
 
-    </div>
 
-  </footer>
+  raguel: {
+    name: "라구엘",
+    en: "RAGUEL",
+    image: "assets/images/characters/raguel.webp",
+    status: ["2학년", "제8품 대천사"],
+    gender: "여성",
+    grade: "2학년",
+    rank: "제8품 대천사",
+    department: "천계행정학과",
+    hair: "짙은 코발트색",
+    specialty: "법 집행 · 조사 · 징계",
+    quote: "“규칙에 예외가 생기는 순간, 그건 규칙이 아니게 됩니다.”",
+    summary:
+      "정의와 질서를 중시하는 대천사. 학생 선도와 조사 업무에 적극적으로 참여한다.",
+    story:
+      "교관이나 교장이라 해도 규정을 어기면 지적한다. 사리엘과는 규칙을 바라보는 관점이 완전히 달라 자주 충돌한다.",
+    keywords: [
+      "정의",
+      "규율",
+      "선도부",
+      "원칙주의",
+      "대천사"
+    ],
+    evaluation:
+      "천계법과 조사능력에서 높은 점수를 받는다. 융통성 부족이 약점으로 지적된다."
+  },
 
 
+  sariel: {
+    name: "사리엘",
+    en: "SARIEL",
+    image: "assets/images/characters/sariel.webp",
+    status: ["2학년", "제8품 대천사"],
+    gender: "여성",
+    grade: "2학년",
+    rank: "제8품 대천사",
+    department: "천문·예언학과",
+    hair: "짙은 남색",
+    specialty: "달 · 죽음 · 금지지식",
+    quote: "“규칙이 진실을 가리고 있다면, 난 규칙 쪽을 의심할 거야.”",
+    summary:
+      "달과 죽음, 금지된 지식을 탐구하는 비밀주의적 대천사. 학내에서 타락과 관련된 소문이 가장 많은 학생 중 하나다.",
+    story:
+      "공식 허가를 받지 않은 자료에도 손을 대며 제0학과와 연결되어 있다는 의심을 받는다. 하지만 행동의 목적은 파괴가 아니라 진실에 가깝다.",
+    keywords: [
+      "달",
+      "금지된 지식",
+      "비밀주의",
+      "대천사",
+      "안티히어로"
+    ],
+    evaluation:
+      "임무 수행 능력은 뛰어나지만 규정 위반 횟수 역시 매우 높다. 라구엘의 주요 감찰 대상."
+  },
 
-  <!-- =========================================================
-       BGM PLAYER
-       ========================================================= -->
 
-  <aside
-    class="music-player"
-    id="musicPlayer"
-  >
+  sandalphon: {
+    name: "산달폰",
+    en: "SANDALPHON",
+    image: "assets/images/characters/sandalphon.webp",
+    status: ["3학년", "제2품 지천사", "치천사 승격 후보"],
+    gender: "여성",
+    grade: "3학년",
+    rank: "제2품 지천사",
+    department: "천계행정학과",
+    hair: "갈색",
+    specialty: "통솔 · 고위 신성술 · 종합전",
+    quote: "“완벽하다는 말은 결과를 보고 하는 말이야. 과정에서 변명을 찾지 마.”",
+    summary:
+      "갈색 머리와 날카로운 인상을 지닌 최상위 엘리트. 메타트론의 자매이며 차기 치천사 승격 후보 중 가장 유력한 학생이다.",
+    story:
+      "전투와 이론, 통솔 모두 높은 수준에 도달해 교관에 가까운 학생이라는 평가를 받는다. 완벽주의 성향이 강해 자신의 실패를 좀처럼 용납하지 못한다.",
+    keywords: [
+      "엘리트",
+      "완벽주의",
+      "갈색 머리",
+      "지천사",
+      "치천사 후보",
+      "산달폰 자매"
+    ],
+    evaluation:
+      "현재 아카데미 전체 학생 중 최고 수준의 종합 성적. 치천사 심사에 가장 가까운 후보로 공식 기록되어 있다."
+  },
 
-    <div class="music-header">
 
-      <div>
+  metatron: {
+    name: "메타트론",
+    en: "METATRON",
+    image: "assets/images/characters/metatron.webp",
+    status: ["3학년", "제2품 지천사", "치천사 승격 후보"],
+    gender: "여성",
+    grade: "3학년",
+    rank: "제2품 지천사",
+    department: "성물공학과",
+    hair: "분홍색",
+    specialty: "성물제작 · 신성회로 · 천재적 연산",
+    quote: "“그걸 아직도 계산하고 있어? 선배, 생각보다 귀엽네?”",
+    summary:
+      "분홍색 머리의 천재 지천사. 장난스럽고 도발적인 태도 때문에 얄밉다는 평가를 받지만 실력만큼은 누구도 부정하지 못한다.",
+    story:
+      "산달폰과 자매지만 성격은 정반대에 가깝다. 중요한 시험조차 게임처럼 즐기며, 어려운 성물공학 과제를 상식을 벗어난 속도로 해결한다.",
+    keywords: [
+      "천재",
+      "메스가키",
+      "분홍 머리",
+      "성물공학",
+      "지천사",
+      "치천사 후보"
+    ],
+    evaluation:
+      "순수 지성 및 성물 제작 분야에서는 산달폰을 넘어선다는 평가도 존재한다. 문제는 책임감과 태도."
+  },
 
-        <div class="music-title">
-          ♪ Academy BGM
-        </div>
 
-        <div
-          class="music-track"
-          id="trackName"
-        >
-          assets/audio/bgm.mp3
-        </div>
+  azazel: {
+    name: "아자젤",
+    en: "AZAZEL",
+    image: "assets/images/characters/azazel.webp",
+    status: ["3학년", "감찰 대상", "제0학과"],
+    gender: "남성",
+    grade: "3학년",
+    rank: "품계 기록 제한",
+    department: "제0학과",
+    hair: "회색",
+    specialty: "금지지식 · 타락론 · 비정규 전투",
+    quote: "“여긴 천사를 기르는 학교가 아니야. 명령을 잘 듣는 천사를 골라내는 곳이지.”",
+    summary:
+      "회색 머리의 남성 문제학생. 아카데미와 천계의 체제 자체에 의문을 제기하며 자유의지와 타락을 연구한다.",
+    story:
+      "단순히 세상을 파괴하려는 악인이 아니라 천사의 선택권이 어디까지 허용되는지를 질문한다. 루시펠 역시 그를 즉시 제거하지 않고 계속 관찰하고 있다.",
+    keywords: [
+      "반역",
+      "자유의지",
+      "회색 머리",
+      "금지학문",
+      "문제학생",
+      "반동인물"
+    ],
+    evaluation:
+      "공식 기록 일부가 봉인되어 있다. 학업능력과 실전능력 모두 상당히 높지만 타락지수 관련 자료는 일반 교직원에게도 공개되지 않는다."
+  },
 
-      </div>
 
+  belial: {
+    name: "벨리알",
+    en: "BELIAL",
+    image: "assets/images/characters/belial.webp",
+    status: ["3학년", "요주의 인물"],
+    gender: "남성",
+    grade: "3학년",
+    rank: "품계 기록 제한",
+    department: "천계행정학과",
+    hair: "흑발",
+    specialty: "심리전 · 유혹 · 협상",
+    quote: "“원하는 게 잘못된 게 아니야. 원하는 걸 숨기면서 고결한 척하는 게 더 우습지.”",
+    summary:
+      "검은 머리의 남성 천사. 타인의 욕망과 결핍을 빠르게 파악하고 이를 이용해 상대의 선택을 흔드는 데 능하다.",
+    story:
+      "아자젤이 체제와 사상을 흔든다면 벨리알은 개인의 감정을 흔든다. 직접 강요하기보다 상대가 스스로 원하는 선택을 하게 만드는 방식을 즐긴다.",
+    keywords: [
+      "유혹",
+      "심리전",
+      "흑발",
+      "책략가",
+      "위험한 매력",
+      "반동인물"
+    ],
+    evaluation:
+      "통솔과 협상 분야의 수치는 높지만 신뢰도 평가가 극단적으로 낮다. 여러 교관이 독립적인 감찰을 요청한 상태."
+  }
 
-      <button
-        class="music-collapse"
-        id="musicCollapse"
-      >
-        −
-      </button>
+};
 
-    </div>
 
 
-    <div class="music-body">
+/* ==========================================================
+   MOBILE MENU
+   ========================================================== */
 
-      <audio
-        id="bgm"
-        loop
-        preload="metadata"
-      >
+const menuToggle =
+  document.getElementById("menuToggle");
 
-        <source
-          src="assets/audio/bgm.mp3"
-          type="audio/mpeg"
-        >
+const navLinks =
+  document.getElementById("navLinks");
 
-      </audio>
 
+menuToggle.addEventListener(
+  "click",
+  () => {
 
-      <div class="music-controls">
+    navLinks.classList.toggle("open");
 
-        <button
-          class="music-button"
-          id="playButton"
-        >
-          PLAY
-        </button>
+  }
+);
 
 
-        <input
-          class="volume"
-          id="volumeControl"
-          type="range"
-          min="0"
-          max="1"
-          step="0.01"
-          value="0.35"
-        >
+document
+  .querySelectorAll(".nav-links a")
+  .forEach(link => {
 
-      </div>
-
-
-      <label class="music-file-label">
-
-        로컬 BGM 임시 불러오기
-
-        <input
-          id="musicFile"
-          type="file"
-          accept="audio/*"
-        >
-
-      </label>
-
-
-      <p class="music-notice">
-        브라우저 자동재생 정책 때문에
-        첫 재생은 사용자가 PLAY 버튼을 눌러야 합니다.
-      </p>
-
-    </div>
-
-  </aside>
-
-
-
-  <!-- =========================================================
-       JAVASCRIPT
-       ========================================================= -->
-
-  <script>
-
-    /* =========================================================
-       MOBILE MENU
-       ========================================================= */
-
-    const menuToggle =
-      document.getElementById("menuToggle");
-
-    const navLinks =
-      document.getElementById("navLinks");
-
-
-    menuToggle.addEventListener(
+    link.addEventListener(
       "click",
       () => {
 
-        navLinks.classList.toggle("open");
+        navLinks.classList.remove("open");
 
       }
     );
 
+  });
 
-    document
-      .querySelectorAll(".nav-links a")
-      .forEach((link) => {
 
-        link.addEventListener(
-          "click",
-          () => {
 
-            navLinks.classList.remove("open");
+/* ==========================================================
+   STUDENT FILTER
+   ========================================================== */
 
-          }
-        );
+const tabButtons =
+  document.querySelectorAll(".tab-button");
+
+const studentCards =
+  document.querySelectorAll(".student-card");
+
+
+tabButtons.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      const grade =
+        button.dataset.grade;
+
+
+      tabButtons.forEach(btn => {
+
+        btn.classList.remove("active");
 
       });
 
 
-    /* =========================================================
-       STUDENT FILTER
-       ========================================================= */
+      button.classList.add("active");
 
-    const tabButtons =
-      document.querySelectorAll(".tab-button");
 
-    const studentCards =
-      document.querySelectorAll(".student-card");
-
-
-    tabButtons.forEach((button) => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          const grade =
-            button.dataset.grade;
-
-
-          tabButtons.forEach((btn) => {
-
-            btn.classList.remove("active");
-
-          });
-
-
-          button.classList.add("active");
-
-
-          studentCards.forEach((card) => {
-
-            if (
-              grade === "all" ||
-              card.dataset.grade === grade
-            ) {
-
-              card.classList.add("show");
-
-            } else {
-
-              card.classList.remove("show");
-
-            }
-
-          });
-
-        }
-      );
-
-    });
-
-
-    /* =========================================================
-       IMAGE FALLBACK
-       ========================================================= */
-
-    /*
-      이미지 파일이 없거나 경로가 잘못되었을 경우
-      img를 숨겨 뒤의 기본 심볼이 보이도록 한다.
-    */
-
-    document
-      .querySelectorAll(".character-image")
-      .forEach((image) => {
-
-        image.addEventListener(
-          "error",
-          () => {
-
-            image.style.display =
-              "none";
-
-          }
-        );
-
-      });
-
-
-    /* =========================================================
-       MUSIC PLAYER
-       ========================================================= */
-
-    const bgm =
-      document.getElementById("bgm");
-
-    const playButton =
-      document.getElementById("playButton");
-
-    const volumeControl =
-      document.getElementById("volumeControl");
-
-    const musicFile =
-      document.getElementById("musicFile");
-
-    const trackName =
-      document.getElementById("trackName");
-
-    const musicPlayer =
-      document.getElementById("musicPlayer");
-
-    const musicCollapse =
-      document.getElementById("musicCollapse");
-
-
-    bgm.volume =
-      Number(volumeControl.value);
-
-
-    playButton.addEventListener(
-      "click",
-      async () => {
-
-        if (bgm.paused) {
-
-          try {
-
-            await bgm.play();
-
-            playButton.textContent =
-              "PAUSE";
-
-          } catch (error) {
-
-            console.log(
-              "BGM playback error:",
-              error
-            );
-
-          }
-
-        } else {
-
-          bgm.pause();
-
-          playButton.textContent =
-            "PLAY";
-
-        }
-
-      }
-    );
-
-
-    volumeControl.addEventListener(
-      "input",
-      () => {
-
-        bgm.volume =
-          Number(volumeControl.value);
-
-      }
-    );
-
-
-    musicFile.addEventListener(
-      "change",
-      () => {
-
-        const file =
-          musicFile.files[0];
-
-        if (!file) {
-          return;
-        }
-
-
-        const fileURL =
-          URL.createObjectURL(file);
-
-
-        bgm.pause();
-
-        bgm.src =
-          fileURL;
-
-        bgm.load();
-
-
-        trackName.textContent =
-          file.name;
-
-        playButton.textContent =
-          "PLAY";
-
-      }
-    );
-
-
-    musicCollapse.addEventListener(
-      "click",
-      () => {
-
-        musicPlayer.classList.toggle(
-          "collapsed"
-        );
-
+      studentCards.forEach(card => {
 
         if (
-          musicPlayer.classList.contains(
-            "collapsed"
-          )
+          grade === "all" ||
+          card.dataset.grade === grade
         ) {
 
-          musicCollapse.textContent =
-            "+";
+          card.classList.add("show");
 
-        } else {
+        }
 
-          musicCollapse.textContent =
-            "−";
+        else {
+
+          card.classList.remove("show");
+
+        }
+
+      });
+
+    }
+  );
+
+});
+
+
+
+/* ==========================================================
+   IMAGE FALLBACK
+   ========================================================== */
+
+document
+  .querySelectorAll(".character-image")
+  .forEach(image => {
+
+    image.addEventListener(
+      "error",
+      () => {
+
+        image.style.display =
+          "none";
+
+      }
+    );
+
+  });
+
+
+
+/* ==========================================================
+   PROFILE SYSTEM
+   ========================================================== */
+
+const profilePage =
+  document.getElementById("profilePage");
+
+const profileClose =
+  document.getElementById("profileClose");
+
+const profileImage =
+  document.getElementById("profileImage");
+
+const profileImageLabel =
+  document.getElementById("profileImageLabel");
+
+const profileStatus =
+  document.getElementById("profileStatus");
+
+const profileName =
+  document.getElementById("profileName");
+
+const profileNameEn =
+  document.getElementById("profileNameEn");
+
+const profileQuote =
+  document.getElementById("profileQuote");
+
+const profileSummary =
+  document.getElementById("profileSummary");
+
+const profileInfo =
+  document.getElementById("profileInfo");
+
+const profileStory =
+  document.getElementById("profileStory");
+
+const profileKeywords =
+  document.getElementById("profileKeywords");
+
+const profileEvaluation =
+  document.getElementById("profileEvaluation");
+
+
+
+function openProfile(id, updateURL = true) {
+
+  const c =
+    characters[id];
+
+  if (!c) return;
+
+
+  profileImage.src =
+    c.image;
+
+  profileImage.alt =
+    c.name;
+
+
+  profileImageLabel.textContent =
+    `${c.en} · PERSONNEL FILE`;
+
+
+  profileStatus.innerHTML =
+    c.status
+      .map(tag =>
+        `<span class="tag tag-gold">${tag}</span>`
+      )
+      .join("");
+
+
+  profileName.textContent =
+    c.name;
+
+  profileNameEn.textContent =
+    c.en;
+
+  profileQuote.textContent =
+    c.quote;
+
+  profileSummary.textContent =
+    c.summary;
+
+
+  const information = [
+    ["성별", c.gender],
+    ["소속", c.grade],
+    ["품계", c.rank],
+    ["전공 / 담당", c.department],
+    ["외형 특징", c.hair],
+    ["주요 특기", c.specialty]
+  ];
+
+
+  profileInfo.innerHTML =
+    information
+      .map(item => `
+        <div class="profile-info">
+          <div class="profile-info-label">
+            ${item[0]}
+          </div>
+          <div class="profile-info-value">
+            ${item[1]}
+          </div>
+        </div>
+      `)
+      .join("");
+
+
+  profileStory.textContent =
+    c.story;
+
+
+  profileKeywords.innerHTML =
+    c.keywords
+      .map(keyword =>
+        `<span class="profile-keyword">${keyword}</span>`
+      )
+      .join("");
+
+
+  profileEvaluation.textContent =
+    c.evaluation;
+
+
+  profilePage.classList.add("open");
+
+  profilePage.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+
+  document.body.classList.add(
+    "profile-open"
+  );
+
+
+  profilePage.scrollTop =
+    0;
+
+
+  if (updateURL) {
+
+    history.pushState(
+      {
+        character: id
+      },
+      "",
+      `#character/${id}`
+    );
+
+  }
+
+}
+
+
+
+function closeProfile(updateURL = true) {
+
+  profilePage.classList.remove("open");
+
+  profilePage.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+
+  document.body.classList.remove(
+    "profile-open"
+  );
+
+
+  if (
+    updateURL &&
+    window.location.hash.startsWith(
+      "#character/"
+    )
+  ) {
+
+    history.pushState(
+      {},
+      "",
+      window.location.pathname +
+      window.location.search +
+      "#students"
+    );
+
+  }
+
+}
+
+
+
+/* 클릭 */
+
+document
+  .querySelectorAll(".character-card")
+  .forEach(card => {
+
+    card.addEventListener(
+      "click",
+      () => {
+
+        openProfile(
+          card.dataset.character
+        );
+
+      }
+    );
+
+
+    card.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+
+          event.preventDefault();
+
+          openProfile(
+            card.dataset.character
+          );
 
         }
 
       }
     );
 
-  </script>
+  });
 
+
+
+profileClose.addEventListener(
+  "click",
+  () => {
+
+    closeProfile();
+
+  }
+);
+
+
+
+/* ESC 닫기 */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key === "Escape" &&
+      profilePage.classList.contains("open")
+    ) {
+
+      closeProfile();
+
+    }
+
+  }
+);
+
+
+
+/* 브라우저 뒤로가기 / 앞으로가기 */
+
+window.addEventListener(
+  "popstate",
+  () => {
+
+    const hash =
+      window.location.hash;
+
+
+    if (
+      hash.startsWith("#character/")
+    ) {
+
+      const id =
+        hash.replace(
+          "#character/",
+          ""
+        );
+
+      openProfile(
+        id,
+        false
+      );
+
+    }
+
+    else {
+
+      closeProfile(
+        false
+      );
+
+    }
+
+  }
+);
+
+
+
+/* 직접 프로필 URL로 접속했을 때 */
+
+window.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    const hash =
+      window.location.hash;
+
+
+    if (
+      hash.startsWith("#character/")
+    ) {
+
+      const id =
+        hash.replace(
+          "#character/",
+          ""
+        );
+
+      openProfile(
+        id,
+        false
+      );
+
+    }
+
+  }
+);
+
+
+
+/* 상세 이미지 파일이 없을 때 */
+
+profileImage.addEventListener(
+  "error",
+  () => {
+
+    profileImage.style.opacity =
+      "0";
+
+  }
+);
+
+
+profileImage.addEventListener(
+  "load",
+  () => {
+
+    profileImage.style.opacity =
+      "1";
+
+  }
+);
+
+
+
+/* ==========================================================
+   MUSIC PLAYER
+   ========================================================== */
+
+const bgm =
+  document.getElementById("bgm");
+
+const playButton =
+  document.getElementById("playButton");
+
+const volumeControl =
+  document.getElementById("volumeControl");
+
+const musicPlayer =
+  document.getElementById("musicPlayer");
+
+const musicCollapse =
+  document.getElementById("musicCollapse");
+
+
+bgm.volume =
+  Number(
+    volumeControl.value
+  );
+
+
+playButton.addEventListener(
+  "click",
+  async () => {
+
+    if (bgm.paused) {
+
+      try {
+
+        await bgm.play();
+
+        playButton.textContent =
+          "PAUSE";
+
+      }
+
+      catch (error) {
+
+        console.log(
+          "BGM playback error:",
+          error
+        );
+
+      }
+
+    }
+
+    else {
+
+      bgm.pause();
+
+      playButton.textContent =
+        "PLAY";
+
+    }
+
+  }
+);
+
+
+volumeControl.addEventListener(
+  "input",
+  () => {
+
+    bgm.volume =
+      Number(
+        volumeControl.value
+      );
+
+  }
+);
+
+
+musicCollapse.addEventListener(
+  "click",
+  () => {
+
+    musicPlayer.classList.toggle(
+      "collapsed"
+    );
+
+
+    musicCollapse.textContent =
+      musicPlayer.classList.contains(
+        "collapsed"
+      )
+        ? "+"
+        : "−";
+
+  }
+);
+</script>
 
 </body>
 </html>
